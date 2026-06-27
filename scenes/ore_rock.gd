@@ -14,9 +14,9 @@ func interact() -> void:
 ## 깊을수록 더 좋은 광물이 나올 수 있다.
 func _roll_ore(depth: int) -> String:
 	var pool := ["stone", "stone", "coal", "copper"]
-	if depth >= 3:
+	if depth >= 150:
 		pool.append("iron")
-	if depth >= 5:
+	if depth >= 400:
 		pool.append("gold")
 	return pool[randi() % pool.size()]
 

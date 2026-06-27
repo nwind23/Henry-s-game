@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0flower00hsg1"]
+
+[ext_resource type="Script" path="res://scenes/region_ground.gd" id="1_g"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_p"]
+[ext_resource type="PackedScene" path="res://scenes/travel_point.tscn" id="3_tp"]
+[ext_resource type="PackedScene" path="res://scenes/gather_node.tscn" id="4_gn"]
+[ext_resource type="PackedScene" path="res://scenes/gem_shrine.tscn" id="5_sh"]
+[ext_resource type="PackedScene" path="res://ui/travel_menu.tscn" id="6_tm"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="7_hud"]
+[ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="8_tc"]
+
+[node name="FlowerField" type="Node2D"]
+script = ExtResource("1_g")
+ground_color = Color(0.46, 0.64, 0.4, 1)
+accent_color = Color(0.36, 0.54, 0.32, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_p")]
+position = Vector2(110, 200)
+
+[node name="TravelPoint" parent="." instance=ExtResource("3_tp")]
+position = Vector2(40, 200)
+
+[node name="Flower1" parent="." instance=ExtResource("4_gn")]
+position = Vector2(260, 150)
+product = "flower"
+body_color = Color(0.3, 0.55, 0.3, 1)
+fruit_color = Color(1.0, 0.5, 0.7, 1)
+
+[node name="Flower2" parent="." instance=ExtResource("4_gn")]
+position = Vector2(380, 250)
+product = "flower"
+body_color = Color(0.3, 0.55, 0.3, 1)
+fruit_color = Color(1.0, 0.8, 0.3, 1)
+
+[node name="Flower3" parent="." instance=ExtResource("4_gn")]
+position = Vector2(470, 140)
+product = "flower"
+body_color = Color(0.3, 0.55, 0.3, 1)
+fruit_color = Color(0.8, 0.5, 1.0, 1)
+
+[node name="GemShrine" parent="." instance=ExtResource("5_sh")]
+position = Vector2(430, 300)
+gem_id = "hope"
+cost_item = "flower"
+cost_amount = 10
+
+[node name="TravelMenu" parent="." instance=ExtResource("6_tm")]
+
+[node name="HUD" parent="." instance=ExtResource("7_hud")]
+
+[node name="TouchControls" parent="." instance=ExtResource("8_tc")]

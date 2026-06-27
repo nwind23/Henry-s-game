@@ -35,6 +35,10 @@ const SELL_PRICES := {
 	"berry": 30,   # 산딸기(숲 채집)
 	"pickle": 90,  # 피클(토마토 가공)
 	"jam": 80,     # 잼(산딸기 가공)
+	"ember": 35,   # 불씨돌(화산 채집)
+	"spark": 35,   # 번개돌(번개산 채집)
+	"flower": 25,  # 꽃(꽃의 들판 채집)
+	"pearl": 60,   # 진주(광활한 바다 채집)
 	"stone": 5,    # 돌
 	"coal": 15,    # 석탄
 	"copper": 25,  # 구리광석
@@ -54,6 +58,10 @@ const ITEM_NAMES := {
 	"berry": "산딸기",
 	"pickle": "피클",
 	"jam": "잼",
+	"ember": "불씨돌",
+	"spark": "번개돌",
+	"flower": "꽃",
+	"pearl": "진주",
 	"stone": "돌",
 	"coal": "석탄",
 	"copper": "구리광석",

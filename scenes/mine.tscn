@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0mine00hsg1"]
+[gd_scene load_steps=8 format=3 uid="uid://c0mine00hsg1"]
 
 [ext_resource type="Script" path="res://scenes/mine.gd" id="1_mine"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
-[ext_resource type="PackedScene" path="res://scenes/region_gate.tscn" id="3_gate"]
+[ext_resource type="PackedScene" path="res://scenes/travel_point.tscn" id="3_tp"]
 [ext_resource type="PackedScene" path="res://scenes/descend_point.tscn" id="4_desc"]
 [ext_resource type="PackedScene" path="res://ui/hud.tscn" id="5_hud"]
 [ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="6_touch"]
+[ext_resource type="PackedScene" path="res://ui/travel_menu.tscn" id="7_tm"]
 
 [node name="Mine" type="Node2D"]
 script = ExtResource("1_mine")
@@ -13,10 +14,8 @@ script = ExtResource("1_mine")
 [node name="Player" parent="." instance=ExtResource("2_player")]
 position = Vector2(110, 200)
 
-[node name="GateVillage" parent="." instance=ExtResource("3_gate")]
+[node name="TravelPoint" parent="." instance=ExtResource("3_tp")]
 position = Vector2(40, 200)
-target_scene = "res://scenes/village.tscn"
-label = "마을로"
 
 [node name="DescendPoint" parent="." instance=ExtResource("4_desc")]
 position = Vector2(430, 305)
@@ -34,4 +33,49 @@ text = "지하 1층"
 
 [node name="HUD" parent="." instance=ExtResource("5_hud")]
 
+[node name="TravelMenu" parent="." instance=ExtResource("7_tm")]
+
 [node name="TouchControls" parent="." instance=ExtResource("6_touch")]
+
+[node name="MineEnding" type="CanvasLayer" parent="."]
+layer = 11
+visible = false
+
+[node name="Dim" type="ColorRect" parent="MineEnding"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.85)
+
+[node name="Box" type="Panel" parent="MineEnding"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -110.0
+offset_right = 210.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text" type="Label" parent="MineEnding/Box"]
+offset_left = 20.0
+offset_top = 24.0
+offset_right = 400.0
+offset_bottom = 160.0
+horizontal_alignment = 1
+text = "광산 엔딩
+
+토캣몬이 광산 1000층 맨 아래에 도달했습니다!
+땅속 깊은 곳에서 신념의 보석을 찾았어요.
+
+대단해요!"
+
+[node name="Close" type="Button" parent="MineEnding/Box"]
+offset_left = 166.0
+offset_top = 176.0
+offset_right = 254.0
+offset_bottom = 208.0
+text = "닫기"

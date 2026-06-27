@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0sea0000hsg1"]
+
+[ext_resource type="Script" path="res://scenes/region_ground.gd" id="1_g"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_p"]
+[ext_resource type="PackedScene" path="res://scenes/travel_point.tscn" id="3_tp"]
+[ext_resource type="PackedScene" path="res://scenes/gather_node.tscn" id="4_gn"]
+[ext_resource type="PackedScene" path="res://scenes/gem_shrine.tscn" id="5_sh"]
+[ext_resource type="PackedScene" path="res://ui/travel_menu.tscn" id="6_tm"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="7_hud"]
+[ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="8_tc"]
+
+[node name="Sea" type="Node2D"]
+script = ExtResource("1_g")
+ground_color = Color(0.2, 0.46, 0.62, 1)
+accent_color = Color(0.13, 0.32, 0.46, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_p")]
+position = Vector2(110, 200)
+
+[node name="TravelPoint" parent="." instance=ExtResource("3_tp")]
+position = Vector2(40, 200)
+
+[node name="Clam1" parent="." instance=ExtResource("4_gn")]
+position = Vector2(260, 150)
+product = "pearl"
+body_color = Color(0.62, 0.76, 0.86, 1)
+fruit_color = Color(0.97, 0.97, 1.0, 1)
+
+[node name="Clam2" parent="." instance=ExtResource("4_gn")]
+position = Vector2(380, 250)
+product = "pearl"
+body_color = Color(0.62, 0.76, 0.86, 1)
+fruit_color = Color(0.97, 0.97, 1.0, 1)
+
+[node name="Clam3" parent="." instance=ExtResource("4_gn")]
+position = Vector2(470, 140)
+product = "pearl"
+body_color = Color(0.62, 0.76, 0.86, 1)
+fruit_color = Color(0.97, 0.97, 1.0, 1)
+
+[node name="GemShrine" parent="." instance=ExtResource("5_sh")]
+position = Vector2(430, 300)
+gem_id = "water"
+cost_item = "pearl"
+cost_amount = 6
+
+[node name="TravelMenu" parent="." instance=ExtResource("6_tm")]
+
+[node name="HUD" parent="." instance=ExtResource("7_hud")]
+
+[node name="TouchControls" parent="." instance=ExtResource("8_tc")]

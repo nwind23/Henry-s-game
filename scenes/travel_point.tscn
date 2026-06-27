@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0travelpt0hsg1"]
+
+[ext_resource type="Script" path="res://scenes/travel_point.gd" id="1_tp"]
+
+[sub_resource type="RectangleShape2D" id="rs_tp"]
+size = Vector2(44, 40)
+
+[node name="TravelPoint" type="Node2D"]
+script = ExtResource("1_tp")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("rs_tp")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -40.0
+offset_top = -44.0
+offset_right = 40.0
+offset_bottom = -24.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "여행"
