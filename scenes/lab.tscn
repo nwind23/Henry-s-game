@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0lab000hsg1"]
+
+[ext_resource type="Script" path="res://scenes/lab.gd" id="1_lab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lab"]
+size = Vector2(54, 44)
+
+[node name="Lab" type="Node2D"]
+script = ExtResource("1_lab")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_lab")
+
+[node name="Sign" type="Label" parent="."]
+offset_left = -36.0
+offset_top = -50.0
+offset_right = 36.0
+offset_bottom = -30.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "연구소"

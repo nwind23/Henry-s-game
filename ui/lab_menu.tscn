@@ -1,0 +1,116 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0labmenu0hsg1"]
+
+[ext_resource type="Script" path="res://ui/lab_menu.gd" id="1_lm"]
+
+[node name="LabMenu" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_lm")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.0
+offset_top = -175.0
+offset_right = 215.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Panel"]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 414.0
+offset_bottom = 38.0
+text = "연구소"
+horizontal_alignment = 1
+
+[node name="Progress" type="Label" parent="Panel"]
+offset_left = 16.0
+offset_top = 44.0
+offset_right = 414.0
+offset_bottom = 70.0
+text = "전설의 보석: 0 / 7"
+horizontal_alignment = 1
+
+[node name="Rows" type="VBoxContainer" parent="Panel"]
+offset_left = 20.0
+offset_top = 78.0
+offset_right = 410.0
+offset_bottom = 250.0
+theme_override_constants/separation = 4
+
+[node name="Action" type="Button" parent="Panel"]
+offset_left = 20.0
+offset_top = 256.0
+offset_right = 410.0
+offset_bottom = 290.0
+disabled = true
+text = "보석을 모두 모으세요"
+
+[node name="Close" type="Button" parent="Panel"]
+offset_left = 171.0
+offset_top = 298.0
+offset_right = 259.0
+offset_bottom = 330.0
+text = "닫기"
+
+[node name="Ending" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Dim2" type="ColorRect" parent="Ending"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.8)
+
+[node name="Box" type="Panel" parent="Ending"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -130.0
+offset_right = 210.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Rainbow" type="HBoxContainer" parent="Ending/Box"]
+offset_left = 35.0
+offset_top = 18.0
+offset_right = 385.0
+offset_bottom = 34.0
+theme_override_constants/separation = 4
+
+[node name="Text" type="Label" parent="Ending/Box"]
+offset_left = 20.0
+offset_top = 50.0
+offset_right = 400.0
+offset_bottom = 200.0
+text = "무지개 엔딩
+
+토캣몬이 7개의 전설의 보석을 모아
+레인보우 보석을 완성하고
+미래 장치를 가동했습니다!
+
+하늘에 무지개가 떴어요. 축하합니다!"
+horizontal_alignment = 1
+
+[node name="Close" type="Button" parent="Ending/Box"]
+offset_left = 166.0
+offset_top = 210.0
+offset_right = 254.0
+offset_bottom = 244.0
+text = "닫기"

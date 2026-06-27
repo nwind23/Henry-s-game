@@ -4,6 +4,21 @@ extends Node
 
 signal money_changed(amount: int)
 signal inventory_changed(item: String, count: int)
+signal gems_changed()
+
+# 7개의 전설의 보석(엔딩 수집품). 각 지역에서 하나씩 획득한다.
+var GEMS: Array = [
+	{"id": "fire", "name": "불의 보석", "color": Color(0.90, 0.20, 0.20), "where": "화산"},
+	{"id": "lightning", "name": "번개의 보석", "color": Color(0.95, 0.55, 0.15), "where": "번개산"},
+	{"id": "hope", "name": "희망의 보석", "color": Color(0.95, 0.85, 0.20), "where": "꽃의 들판"},
+	{"id": "forest", "name": "숲의 보석", "color": Color(0.20, 0.70, 0.30), "where": "숲"},
+	{"id": "water", "name": "물의 보석", "color": Color(0.25, 0.50, 0.90), "where": "광활한 바다"},
+	{"id": "faith", "name": "신념의 보석", "color": Color(0.30, 0.30, 0.70), "where": "광산 1000층"},
+	{"id": "foresight", "name": "예지의 보석", "color": Color(0.60, 0.30, 0.80), "where": "연구소"},
+]
+
+var gems: Dictionary = {}   # id -> true(보유)
+var has_rainbow: bool = false
 
 var money: int = 0
 var inventory: Dictionary = {}
@@ -62,6 +77,36 @@ func get_count(item: String) -> int:
 func add_money(amount: int) -> void:
 	money += amount
 	money_changed.emit(money)
+
+## --- 전설의 보석 ---
+
+func collect_gem(id: String) -> bool:
+	if gems.get(id, false):
+		return false
+	gems[id] = true
+	gems_changed.emit()
+	return true
+
+func has_gem(id: String) -> bool:
+	return gems.get(id, false)
+
+func gem_count() -> int:
+	var n := 0
+	for g in GEMS:
+		if gems.get(g.id, false):
+			n += 1
+	return n
+
+func has_all_gems() -> bool:
+	return gem_count() == GEMS.size()
+
+## 7개를 다 모았을 때 레인보우 보석을 만든다. 성공 시 true.
+func make_rainbow() -> bool:
+	if has_all_gems() and not has_rainbow:
+		has_rainbow = true
+		gems_changed.emit()
+		return true
+	return false
 
 ## 해당 아이템을 전부 판매하고, 번 돈을 반환한다.
 func sell_all(item: String) -> int:

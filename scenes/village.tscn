@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" path="res://scenes/crop_plot.tscn" id="10_crop"]
 [ext_resource type="PackedScene" path="res://scenes/region_gate.tscn" id="11_gate"]
 [ext_resource type="PackedScene" path="res://ui/process_menu.tscn" id="12_pm"]
+[ext_resource type="PackedScene" path="res://scenes/lab.tscn" id="13_lab"]
+[ext_resource type="PackedScene" path="res://ui/lab_menu.tscn" id="14_lm"]
 
 [node name="Village" type="Node2D"]
 script = ExtResource("1_village")
@@ -34,6 +36,9 @@ kind = "smelter"
 
 [node name="Shop" parent="." instance=ExtResource("6_shop")]
 position = Vector2(440, 120)
+
+[node name="Lab" parent="." instance=ExtResource("13_lab")]
+position = Vector2(525, 90)
 
 [node name="Plot1" parent="." instance=ExtResource("10_crop")]
 position = Vector2(225, 325)
@@ -59,5 +64,7 @@ label = "광산으로"
 [node name="ShopMenu" parent="." instance=ExtResource("8_menu")]
 
 [node name="ProcessMenu" parent="." instance=ExtResource("12_pm")]
+
+[node name="LabMenu" parent="." instance=ExtResource("14_lm")]
 
 [node name="TouchControls" parent="." instance=ExtResource("9_touch")]
