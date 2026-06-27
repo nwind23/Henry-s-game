@@ -5,6 +5,9 @@ const SEED_COST := 10      # 씨앗 값(임시) — DECISIONS.md
 const CROP := "tomato"
 const GROW_TIME := 12.0    # 다 자라는 데 걸리는 초(임시)
 
+const DRY_TEX := preload("res://assets/art/tiles/field_brown.png")
+const WET_TEX := preload("res://assets/art/tiles/field_watered.png")
+
 enum State { EMPTY, GROWING, RIPE }
 
 var _state: State = State.EMPTY
@@ -42,9 +45,9 @@ func interact() -> void:
 			print("%s 수확! (보유: %d개)" % [GameState.item_name(CROP), GameState.get_count(CROP)])
 
 func _draw() -> void:
-	# 밭(흙)
-	draw_rect(Rect2(-14, -10, 28, 20), Color(0.5, 0.36, 0.24))
-	draw_rect(Rect2(-14, -10, 28, 20), Color(0.34, 0.24, 0.16), false, 2.0)
+	# 밭(흙) — 비어있으면 마른 흙, 심으면 물 준 밭
+	var tex := DRY_TEX if _state == State.EMPTY else WET_TEX
+	draw_texture_rect(tex, Rect2(-16, -14, 32, 28), false)
 	match _state:
 		State.GROWING:
 			var grown := 1.0 - clampf(_timer / GROW_TIME, 0.0, 1.0)

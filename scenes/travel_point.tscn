@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0travelpt0hsg1"]
+[gd_scene load_steps=4 format=3 uid="uid://c0travelpt0hsg1"]
 
 [ext_resource type="Script" path="res://scenes/travel_point.gd" id="1_tp"]
+[ext_resource type="Texture2D" path="res://assets/art/objects/sign.png" id="2_tex"]
 
 [sub_resource type="RectangleShape2D" id="rs_tp"]
 size = Vector2(44, 40)
 
 [node name="TravelPoint" type="Node2D"]
 script = ExtResource("1_tp")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_tex")
 
 [node name="Area2D" type="Area2D" parent="."]
 
