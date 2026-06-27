@@ -7,9 +7,13 @@
 [ext_resource type="PackedScene" path="res://ui/hud.tscn" id="5_hud"]
 [ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="6_touch"]
 [ext_resource type="PackedScene" path="res://ui/travel_menu.tscn" id="7_tm"]
+[ext_resource type="PackedScene" path="res://scenes/world_bounds.tscn" id="8_bounds"]
 
 [node name="Mine" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_mine")
+
+[node name="WorldBounds" parent="." instance=ExtResource("8_bounds")]
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
 position = Vector2(110, 200)

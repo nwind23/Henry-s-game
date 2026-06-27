@@ -15,9 +15,13 @@
 [ext_resource type="PackedScene" path="res://scenes/lab.tscn" id="13_lab"]
 [ext_resource type="PackedScene" path="res://ui/lab_menu.tscn" id="14_lm"]
 [ext_resource type="PackedScene" path="res://ui/travel_menu.tscn" id="15_tm"]
+[ext_resource type="PackedScene" path="res://scenes/world_bounds.tscn" id="16_bounds"]
 
 [node name="Village" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_village")
+
+[node name="WorldBounds" parent="." instance=ExtResource("16_bounds")]
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
 position = Vector2(320, 210)

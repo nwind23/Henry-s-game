@@ -8,11 +8,15 @@
 [ext_resource type="PackedScene" path="res://ui/travel_menu.tscn" id="6_tm"]
 [ext_resource type="PackedScene" path="res://ui/hud.tscn" id="7_hud"]
 [ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="8_tc"]
+[ext_resource type="PackedScene" path="res://scenes/world_bounds.tscn" id="9_bounds"]
 
 [node name="Thunder" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_g")
 ground_color = Color(0.3, 0.31, 0.42, 1)
 accent_color = Color(0.18, 0.19, 0.28, 1)
+
+[node name="WorldBounds" parent="." instance=ExtResource("9_bounds")]
 
 [node name="Player" parent="." instance=ExtResource("2_p")]
 position = Vector2(110, 200)
