@@ -49,7 +49,7 @@ fruit_color = Color(1.0, 0.9, 0.2, 1)
 position = Vector2(430, 300)
 gem_id = "lightning"
 cost_item = "spark"
-cost_amount = 8
+cost_amount = 40
 
 [node name="TravelMenu" parent="." instance=ExtResource("6_tm")]
 

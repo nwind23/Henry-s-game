@@ -2,7 +2,7 @@ extends CanvasLayer
 ## 연구소 메뉴. 전설의 보석 진척 + 예지의 보석 연구 + 레인보우 보석 →
 ## 무지개 엔딩 → (해금) 진엔딩.
 
-const FORESIGHT_COST := 500  # 예지의 보석 연구 비용(G)
+const FORESIGHT_COST := 3000  # 예지의 보석 연구 비용(G)
 
 const RAINBOW_TEXT := "무지개 엔딩
 

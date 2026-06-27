@@ -8,19 +8,77 @@ script = ExtResource("1_hud")
 [node name="Panel" type="Panel" parent="."]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 172.0
-offset_bottom = 152.0
+offset_right = 176.0
+offset_bottom = 150.0
 
 [node name="MoneyLabel" type="Label" parent="Panel"]
 offset_left = 10.0
 offset_top = 6.0
-offset_right = 156.0
+offset_right = 158.0
 offset_bottom = 30.0
 text = "돈: 0G"
 
-[node name="ItemsLabel" type="Label" parent="Panel"]
+[node name="Scroll" type="ScrollContainer" parent="Panel"]
 offset_left = 10.0
 offset_top = 34.0
-offset_right = 156.0
-offset_bottom = 138.0
-text = "달걀: 0개"
+offset_right = 158.0
+offset_bottom = 134.0
+horizontal_scroll_mode = 0
+
+[node name="ItemsLabel" type="Label" parent="Panel/Scroll"]
+text = "(가진 것 없음)"
+
+[node name="ResetBtn" type="Button" parent="."]
+offset_left = 614.0
+offset_top = 4.0
+offset_right = 636.0
+offset_bottom = 26.0
+modulate = Color(1, 1, 1, 0.18)
+text = "R"
+
+[node name="Confirm" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Dim" type="ColorRect" parent="Confirm"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="Box" type="Panel" parent="Confirm"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -80.0
+offset_right = 180.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text" type="Label" parent="Confirm/Box"]
+offset_left = 16.0
+offset_top = 18.0
+offset_right = 344.0
+offset_bottom = 90.0
+horizontal_alignment = 1
+text = "처음부터 다시 시작할까요?
+모든 진행이 사라져요!"
+
+[node name="Yes" type="Button" parent="Confirm/Box"]
+offset_left = 50.0
+offset_top = 104.0
+offset_right = 160.0
+offset_bottom = 140.0
+text = "예"
+
+[node name="No" type="Button" parent="Confirm/Box"]
+offset_left = 200.0
+offset_top = 104.0
+offset_right = 310.0
+offset_bottom = 140.0
+text = "아니오"
