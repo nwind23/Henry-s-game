@@ -3,7 +3,7 @@ extends CanvasLayer
 
 @onready var title_label: Label = $Panel/Title
 @onready var status_label: Label = $Panel/Status
-@onready var rows: VBoxContainer = $Panel/Rows
+@onready var rows: VBoxContainer = $Panel/Scroll/Rows
 @onready var close_button: Button = $Panel/Close
 
 var _proc: Node = null
@@ -41,25 +41,47 @@ func _rebuild() -> void:
 		rows.add_child(_make_row(recipe))
 
 func _make_row(recipe: Dictionary) -> Control:
-	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 10)
+	# 레시피 한 줄: [좌] 결과물 이름 + 재료 목록(보유/필요 색상) / [우] 가공 버튼
+	var frame := PanelContainer.new()
+	var hb := HBoxContainer.new()
+	hb.add_theme_constant_override("separation", 10)
+	frame.add_child(hb)
 
-	# 입력 → 출력 설명
+	var col := VBoxContainer.new()
+	col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	col.add_theme_constant_override("separation", 1)
+	hb.add_child(col)
+
+	# 결과물 이름 (한 개 만들어짐)
+	var name_lbl := Label.new()
+	name_lbl.text = GameState.item_name(recipe.output)
+	col.add_child(name_lbl)
+
+	# 재료: "재료 보유/필요" — 충분하면 초록, 부족하면 빨강 / 줄바꿈 허용
+	var mats := RichTextLabel.new()
+	mats.bbcode_enabled = true
+	mats.fit_content = true
+	mats.scroll_active = false
+	mats.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	mats.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var parts: Array[String] = []
 	for item in recipe.inputs:
-		parts.append("%s %d" % [GameState.item_name(item), int(recipe.inputs[item])])
-	var desc := Label.new()
-	desc.text = "%s → %s (%d초)" % [", ".join(parts), GameState.item_name(recipe.output), int(recipe.time)]
-	desc.custom_minimum_size = Vector2(360, 0)
-	desc.clip_text = true
-	row.add_child(desc)
+		var need := int(recipe.inputs[item])
+		var have := GameState.get_count(item)
+		var c := "5fd17a" if have >= need else "ff6b6b"
+		parts.append("[color=#%s]%s %d/%d[/color]" % [c, GameState.item_name(item), have, need])
+	mats.text = "[color=#b0b0b0]%s · %d초[/color]" % [" · ".join(parts), int(recipe.time)]
+	col.add_child(mats)
 
+	# 가공 버튼
 	var btn := Button.new()
 	btn.text = "가공"
+	btn.custom_minimum_size = Vector2(76, 0)
+	btn.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	btn.disabled = _proc.is_busy() or not _proc.can_make(recipe)
 	btn.pressed.connect(_on_make.bind(recipe))
-	row.add_child(btn)
-	return row
+	hb.add_child(btn)
+	return frame
 
 func _on_make(recipe: Dictionary) -> void:
 	_proc.start_recipe(recipe)
