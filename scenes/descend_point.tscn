@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0descend0hsg1"]
+[gd_scene load_steps=4 format=3 uid="uid://c0descend0hsg1"]
 
 [ext_resource type="Script" path="res://scenes/descend_point.gd" id="1_desc"]
+[ext_resource type="Texture2D" path="res://assets/art/objects/mine_entrance.png" id="2_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_desc"]
 size = Vector2(34, 34)
 
 [node name="DescendPoint" type="Node2D"]
 script = ExtResource("1_desc")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_tex")
 
 [node name="Area2D" type="Area2D" parent="."]
 

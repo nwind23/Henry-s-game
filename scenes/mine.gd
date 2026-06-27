@@ -3,6 +3,7 @@ extends Node2D
 ## 더 깊을수록 좋은 광물. 1000층 맨 아래에 도달하면 신념의 보석 + 광산 엔딩.
 
 const ORE_ROCK := preload("res://scenes/ore_rock.tscn")
+const STONE_TEX := preload("res://assets/art/tiles/stone.png")
 const ROCK_COUNT := 6
 const DESCEND_STEP := 50   # 깊은 갱도를 타고 한 번에 내려가는 층수
 const GOAL_DEPTH := 1000   # 맨 아래(광산 엔딩)
@@ -14,6 +15,7 @@ var _rocks: Array[Node] = []
 
 func _ready() -> void:
 	randomize()
+	texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
 	_spawn_rocks()
 	_update_label()
 	_ending.visible = false
@@ -64,5 +66,6 @@ func _update_label() -> void:
 		_depth_label.text = "지하 %d층" % GameState.mine_depth
 
 func _draw() -> void:
-	draw_rect(Rect2(0, 0, 640, 360), Color(0.16, 0.14, 0.18))
-	draw_rect(Rect2(0, 0, 640, 360), Color(0.1, 0.09, 0.12), false, 12.0)
+	# 어두운 동굴 느낌으로 돌 타일을 깔고 모듈레이트로 톤을 낮춘다
+	draw_texture_rect(STONE_TEX, Rect2(0, 0, 640, 360), true, Color(0.42, 0.4, 0.46))
+	draw_rect(Rect2(0, 0, 640, 360), Color(0.1, 0.09, 0.12, 1), false, 12.0)

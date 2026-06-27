@@ -1,16 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0duck00hsg1"]
+[gd_scene load_steps=4 format=3 uid="uid://c0duck00hsg1"]
 
-[ext_resource type="Script" path="res://scenes/duck.gd" id="1_d"]
+[ext_resource type="Script" path="res://scenes/animal.gd" id="1_a"]
+[ext_resource type="Texture2D" path="res://assets/art/animals/duck_walk.png" id="2_s"]
 
 [sub_resource type="CircleShape2D" id="cs"]
-radius = 13.0
+radius = 14.0
 
 [node name="Duck" type="Node2D"]
-script = ExtResource("1_d")
+script = ExtResource("1_a")
 product = "duck_egg"
 secondary_product = "duck_feather"
 cooldown = 7.0
 wander_radius = 40.0
+sheet = ExtResource("2_s")
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 

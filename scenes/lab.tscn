@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0lab000hsg1"]
+[gd_scene load_steps=5 format=3 uid="uid://c0lab000hsg1"]
 
 [ext_resource type="Script" path="res://scenes/lab.gd" id="1_lab"]
+[ext_resource type="Texture2D" path="res://assets/art/buildings/lab.png" id="2_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lab"]
 size = Vector2(54, 44)
@@ -10,6 +11,10 @@ size = Vector2(50, 34)
 
 [node name="Lab" type="Node2D"]
 script = ExtResource("1_lab")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_tex")
 
 [node name="Area2D" type="Area2D" parent="."]
 

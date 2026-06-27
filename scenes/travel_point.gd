@@ -5,14 +5,8 @@ extends Node2D
 
 func _ready() -> void:
 	_label.text = "여행"
-	queue_redraw()
 
 func interact() -> void:
 	var menu := get_tree().get_first_node_in_group("travel_menu")
 	if menu:
 		menu.call("open")
-
-func _draw() -> void:
-	draw_rect(Rect2(-3, -2, 6, 22), Color(0.5, 0.35, 0.2))
-	draw_rect(Rect2(-22, -22, 44, 20), Color(0.55, 0.78, 0.95))
-	draw_rect(Rect2(-22, -22, 44, 20), Color(0.3, 0.45, 0.6), false, 2.0)

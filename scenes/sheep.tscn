@@ -1,15 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0sheep00hsg1"]
+[gd_scene load_steps=4 format=3 uid="uid://c0sheep00hsg1"]
 
-[ext_resource type="Script" path="res://scenes/sheep.gd" id="1_s"]
+[ext_resource type="Script" path="res://scenes/animal.gd" id="1_a"]
+[ext_resource type="Texture2D" path="res://assets/art/animals/sheep_walk.png" id="2_s"]
 
 [sub_resource type="CircleShape2D" id="cs"]
-radius = 14.0
+radius = 18.0
 
 [node name="Sheep" type="Node2D"]
-script = ExtResource("1_s")
+script = ExtResource("1_a")
 product = "wool"
 cooldown = 12.0
 wander_radius = 36.0
+sheet = ExtResource("2_s")
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 

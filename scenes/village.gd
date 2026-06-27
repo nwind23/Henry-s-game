@@ -3,7 +3,11 @@ extends Node2D
 
 const INTRO_TEXT := "토캣몬은 먼 곳에서 이 마을에 온 신비한 친구예요.\n동물을 키우고 작물을 기르고 광산을 파며,\n7개의 전설의 보석을 모으는 모험을 시작합니다!\n(5년 뒤엔 원래 집으로 돌아간대요.)"
 
+const GRASS_TEX := preload("res://assets/art/tiles/grass.png")
+const PATH_TEX := preload("res://assets/art/tiles/dirt_path.png")
+
 func _ready() -> void:
+	texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
 	queue_redraw()
 	if not GameState.seen_intro:
 		GameState.seen_intro = true
@@ -17,6 +21,6 @@ func _show_intro() -> void:
 
 func _draw() -> void:
 	# 잔디 바닥 (뷰포트 전체)
-	draw_rect(Rect2(0, 0, 640, 360), Color(0.42, 0.66, 0.36))
-	# 상점 앞 흙길 느낌
-	draw_rect(Rect2(408, 150, 64, 200), Color(0.62, 0.5, 0.35))
+	draw_texture_rect(GRASS_TEX, Rect2(0, 0, 640, 360), true)
+	# 상점 앞 흙길
+	draw_texture_rect(PATH_TEX, Rect2(408, 150, 64, 200), true)

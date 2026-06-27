@@ -22,14 +22,20 @@ const SMELTER_RECIPES := [
 	{"id": "hyper_gem", "inputs": {"sirius_bar": 1, "iridium": 10, "coal": 30}, "output": "hyper_gem", "time": 30.0},
 ]
 
+const KITCHEN_TEX := preload("res://assets/art/buildings/workbench.png")
+const SMELTER_TEX := preload("res://assets/art/buildings/smelter.png")
+
 var recipes: Array = []
 var _busy := false
 var _timer := 0.0
 var _time_total := 1.0
 var _output := ""
 
+@onready var sprite: Sprite2D = $Sprite
+
 func _ready() -> void:
 	recipes = SMELTER_RECIPES if kind == "smelter" else KITCHEN_RECIPES
+	sprite.texture = SMELTER_TEX if kind == "smelter" else KITCHEN_TEX
 	if has_node("Sign"):
 		$Sign.text = display_name()
 	queue_redraw()
@@ -79,16 +85,8 @@ func start_recipe(recipe: Dictionary) -> bool:
 	return true
 
 func _draw() -> void:
-	var body_col := Color(0.5, 0.3, 0.28) if kind == "smelter" else Color(0.45, 0.45, 0.52)
-	var chamber_idle := Color(0.3, 0.12, 0.1) if kind == "smelter" else Color(0.7, 0.7, 0.78)
-	var chamber_busy := Color(1.0, 0.55, 0.2) if kind == "smelter" else Color(1.0, 0.9, 0.5)
-	# 본체
-	draw_rect(Rect2(-20, -16, 40, 32), body_col)
-	draw_rect(Rect2(-20, -16, 40, 32), Color(0.2, 0.18, 0.2), false, 2.0)
-	# 가공실/화로
-	draw_rect(Rect2(-12, -8, 24, 16), chamber_busy if _busy else chamber_idle)
-	# 진행 바
+	# 가공 중이면 진행 바를 본체 아래에 표시
 	if _busy:
 		var p := 1.0 - clampf(_timer / _time_total, 0.0, 1.0)
-		draw_rect(Rect2(-18, 18, 36, 5), Color(0.2, 0.2, 0.2))
-		draw_rect(Rect2(-18, 18, 36 * p, 5), Color(0.3, 0.85, 0.4))
+		draw_rect(Rect2(-20, 16, 40, 5), Color(0.15, 0.15, 0.15))
+		draw_rect(Rect2(-20, 16, 40 * p, 5), Color(0.3, 0.85, 0.4))

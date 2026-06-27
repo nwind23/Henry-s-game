@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0shop0hsg1"]
+[gd_scene load_steps=5 format=3 uid="uid://c0shop0hsg1"]
 
 [ext_resource type="Script" path="res://scenes/shop.gd" id="1_shop"]
+[ext_resource type="Texture2D" path="res://assets/art/buildings/shop.png" id="2_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shop"]
 size = Vector2(52, 44)
@@ -10,6 +11,10 @@ size = Vector2(46, 36)
 
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_shop")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_tex")
 
 [node name="Area2D" type="Area2D" parent="."]
 
