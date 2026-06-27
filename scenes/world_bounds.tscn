@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0bounds00hsg1"]
+
+[sub_resource type="RectangleShape2D" id="h"]
+size = Vector2(700, 20)
+
+[sub_resource type="RectangleShape2D" id="v"]
+size = Vector2(20, 420)
+
+[node name="WorldBounds" type="StaticBody2D"]
+
+[node name="Top" type="CollisionShape2D" parent="."]
+position = Vector2(320, -10)
+shape = SubResource("h")
+
+[node name="Bottom" type="CollisionShape2D" parent="."]
+position = Vector2(320, 370)
+shape = SubResource("h")
+
+[node name="Left" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 180)
+shape = SubResource("v")
+
+[node name="Right" type="CollisionShape2D" parent="."]
+position = Vector2(650, 180)
+shape = SubResource("v")
