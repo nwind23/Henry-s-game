@@ -5,6 +5,7 @@ extends CanvasLayer
 const REGIONS := [
 	{"name": "마을", "scene": "res://scenes/village.tscn"},
 	{"name": "숲", "scene": "res://scenes/forest.tscn"},
+	{"name": "목장", "scene": "res://scenes/ranch.tscn"},
 	{"name": "광산", "scene": "res://scenes/mine.tscn"},
 	{"name": "화산", "scene": "res://scenes/volcano.tscn"},
 	{"name": "번개산", "scene": "res://scenes/thunder.tscn"},

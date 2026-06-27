@@ -18,17 +18,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -190.0
-offset_top = -110.0
-offset_right = 190.0
-offset_bottom = 110.0
+offset_left = -235.0
+offset_top = -180.0
+offset_right = 235.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="Label" parent="Panel"]
 offset_left = 16.0
 offset_top = 12.0
-offset_right = 364.0
+offset_right = 454.0
 offset_bottom = 38.0
 text = "가공대"
 horizontal_alignment = 1
@@ -36,20 +36,20 @@ horizontal_alignment = 1
 [node name="Status" type="Label" parent="Panel"]
 offset_left = 16.0
 offset_top = 44.0
-offset_right = 364.0
+offset_right = 454.0
 offset_bottom = 68.0
 text = "무엇을 만들까?"
 
 [node name="Rows" type="VBoxContainer" parent="Panel"]
 offset_left = 16.0
 offset_top = 76.0
-offset_right = 364.0
-offset_bottom = 170.0
-theme_override_constants/separation = 8
+offset_right = 454.0
+offset_bottom = 300.0
+theme_override_constants/separation = 4
 
 [node name="Close" type="Button" parent="Panel"]
-offset_left = 146.0
-offset_top = 178.0
-offset_right = 234.0
-offset_bottom = 210.0
+offset_left = 191.0
+offset_top = 308.0
+offset_right = 279.0
+offset_bottom = 340.0
 text = "닫기"

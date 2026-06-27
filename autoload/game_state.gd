@@ -39,14 +39,30 @@ const SELL_PRICES := {
 	"spark": 35,   # 번개돌(번개산 채집)
 	"flower": 25,  # 꽃(꽃의 들판 채집)
 	"pearl": 60,   # 진주(광활한 바다 채집)
+	"wool": 60,        # 양털
+	"truffle": 150,    # 송로버섯(돼지)
+	"duck_egg": 55,    # 오리알
+	"duck_feather": 45, # 오리깃털
+	"rabbit_fur": 70,  # 토끼털
+	"mayo": 110,       # 마요네즈(달걀 가공)
+	"cloth": 160,      # 천(양털 가공)
+	"duck_mayo": 120,  # 오리 마요네즈
+	"feather_deco": 130, # 깃털 장식품
+	"honey": 90,       # 꿀(꽃 가공)
 	"stone": 5,    # 돌
 	"coal": 15,    # 석탄
 	"copper": 25,  # 구리광석
 	"iron": 50,    # 철광석
 	"gold": 120,   # 금광석
+	"magic_ore": 200,  # 마의광석
+	"opal": 280,       # 오팔
+	"sirius": 400,     # 시리우스광석
+	"iridium": 500,    # 이리듐
 	"copper_bar": 70,  # 구리주괴(제련)
 	"iron_bar": 130,   # 철주괴(제련)
 	"gold_bar": 320,   # 금주괴(제련)
+	"sirius_bar": 1200,  # 시리우스 주괴
+	"hyper_gem": 5000,   # 하이퍼 시리우스메가 보석
 }
 
 # 화면 표시용 한국어 이름.
@@ -62,14 +78,30 @@ const ITEM_NAMES := {
 	"spark": "번개돌",
 	"flower": "꽃",
 	"pearl": "진주",
+	"wool": "양털",
+	"truffle": "송로버섯",
+	"duck_egg": "오리알",
+	"duck_feather": "오리깃털",
+	"rabbit_fur": "토끼털",
+	"mayo": "마요네즈",
+	"cloth": "천",
+	"duck_mayo": "오리마요",
+	"feather_deco": "깃털장식",
+	"honey": "꿀",
 	"stone": "돌",
 	"coal": "석탄",
 	"copper": "구리광석",
 	"iron": "철광석",
 	"gold": "금광석",
+	"magic_ore": "마의광석",
+	"opal": "오팔",
+	"sirius": "시리우스광석",
+	"iridium": "이리듐",
 	"copper_bar": "구리주괴",
 	"iron_bar": "철주괴",
 	"gold_bar": "금주괴",
+	"sirius_bar": "시리우스주괴",
+	"hyper_gem": "하이퍼시리우스메가보석",
 }
 
 func item_name(item: String) -> String:

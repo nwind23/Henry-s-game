@@ -4,6 +4,8 @@ class_name Animal
 ## 닭/소 등은 이 스크립트를 extends 하고 _draw()만 각자 그린다.
 
 @export var product: String = "egg"   # 생산 아이템 키
+@export var secondary_product: String = ""  # 있으면 가끔 이걸 대신 준다(예: 오리깃털)
+@export var secondary_chance: float = 0.4
 @export var cooldown: float = 5.0      # 생산 재충전 시간(초)
 @export var wander_radius: float = 48.0
 
@@ -40,8 +42,11 @@ func interact() -> void:
 	if _has_product:
 		_has_product = false
 		_timer = cooldown
-		GameState.add_item(product, 1)
+		var give := product
+		if secondary_product != "" and randf() < secondary_chance:
+			give = secondary_product
+		GameState.add_item(give, 1)
 		queue_redraw()
-		print("%s을(를) 얻었다! (보유: %d개)" % [GameState.item_name(product), GameState.get_count(product)])
+		print("%s을(를) 얻었다! (보유: %d개)" % [GameState.item_name(give), GameState.get_count(give)])
 	else:
 		print("%s이(가) 아직 준비되지 않았다..." % GameState.item_name(product))
