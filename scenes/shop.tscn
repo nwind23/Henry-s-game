@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0shop0hsg1"]
+
+[ext_resource type="Script" path="res://scenes/shop.gd" id="1_shop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shop"]
+size = Vector2(52, 44)
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_shop")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_shop")
+
+[node name="Sign" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -60.0
+offset_right = 24.0
+offset_bottom = -42.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "상점"
