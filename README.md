@@ -53,3 +53,23 @@ bash .claude/hooks/install-godot.sh   # 수동 설치
 godot --version                        # 4.7.stable.official
 godot --headless --import              # 에셋 임포트(CI/헤드리스)
 ```
+
+## 웹 익스포트 (실험적)
+
+기획서대로 웹은 **후순위/불안정**이지만, 빠른 미리보기용으로 동작합니다.
+`export_presets.cfg`에 **Web** 프리셋이 있고, 스레드 미사용(nothreads) 모드라
+별도의 COOP/COEP 헤더 없이도 로컬 서버에서 띄울 수 있습니다.
+
+```bash
+# 1) 웹 export templates 설치(약 1.28GB, 한 번만 — SessionStart 훅에는 미포함)
+bash .claude/hooks/install-export-templates.sh
+
+# 2) 빌드
+godot --headless --export-release "Web" build/web/index.html
+
+# 3) 로컬 미리보기 (브라우저에서 http://localhost:8099/index.html)
+python3 -m http.server 8099 -d build/web
+```
+
+빌드 산출물(`build/`)은 git에 올리지 않습니다(`.gitignore` 제외). 헤드리스
+Chromium에서 부팅·렌더링(한국어 HUD 포함) 확인 완료.
