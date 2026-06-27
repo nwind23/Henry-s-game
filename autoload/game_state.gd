@@ -25,6 +25,9 @@ const SELL_PRICES := {
 	"copper": 25,  # 구리광석
 	"iron": 50,    # 철광석
 	"gold": 120,   # 금광석
+	"copper_bar": 70,  # 구리주괴(제련)
+	"iron_bar": 130,   # 철주괴(제련)
+	"gold_bar": 320,   # 금주괴(제련)
 }
 
 # 화면 표시용 한국어 이름.
@@ -41,6 +44,9 @@ const ITEM_NAMES := {
 	"copper": "구리광석",
 	"iron": "철광석",
 	"gold": "금광석",
+	"copper_bar": "구리주괴",
+	"iron_bar": "철주괴",
+	"gold_bar": "금주괴",
 }
 
 func item_name(item: String) -> String:
