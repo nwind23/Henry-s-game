@@ -19,9 +19,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -215.0
-offset_top = -175.0
+offset_top = -185.0
 offset_right = 215.0
-offset_bottom = 175.0
+offset_bottom = 185.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -45,22 +45,29 @@ horizontal_alignment = 1
 offset_left = 20.0
 offset_top = 78.0
 offset_right = 410.0
-offset_bottom = 250.0
+offset_bottom = 234.0
 theme_override_constants/separation = 4
+
+[node name="Research" type="Button" parent="Panel"]
+offset_left = 20.0
+offset_top = 240.0
+offset_right = 410.0
+offset_bottom = 272.0
+text = "예지의 보석 연구 (500G)"
 
 [node name="Action" type="Button" parent="Panel"]
 offset_left = 20.0
-offset_top = 256.0
+offset_top = 278.0
 offset_right = 410.0
-offset_bottom = 290.0
+offset_bottom = 310.0
 disabled = true
 text = "보석을 모두 모으세요"
 
 [node name="Close" type="Button" parent="Panel"]
 offset_left = 171.0
-offset_top = 298.0
+offset_top = 318.0
 offset_right = 259.0
-offset_bottom = 330.0
+offset_bottom = 350.0
 text = "닫기"
 
 [node name="Ending" type="Control" parent="."]
@@ -81,9 +88,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -210.0
-offset_top = -130.0
+offset_top = -135.0
 offset_right = 210.0
-offset_bottom = 130.0
+offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -96,21 +103,22 @@ theme_override_constants/separation = 4
 
 [node name="Text" type="Label" parent="Ending/Box"]
 offset_left = 20.0
-offset_top = 50.0
+offset_top = 46.0
 offset_right = 400.0
-offset_bottom = 200.0
-text = "무지개 엔딩
-
-토캣몬이 7개의 전설의 보석을 모아
-레인보우 보석을 완성하고
-미래 장치를 가동했습니다!
-
-하늘에 무지개가 떴어요. 축하합니다!"
+offset_bottom = 185.0
 horizontal_alignment = 1
+text = "무지개 엔딩"
+
+[node name="TrueEnding" type="Button" parent="Ending/Box"]
+offset_left = 40.0
+offset_top = 196.0
+offset_right = 200.0
+offset_bottom = 230.0
+text = "진엔딩 보기"
 
 [node name="Close" type="Button" parent="Ending/Box"]
-offset_left = 166.0
-offset_top = 210.0
-offset_right = 254.0
-offset_bottom = 244.0
+offset_left = 220.0
+offset_top = 196.0
+offset_right = 380.0
+offset_bottom = 230.0
 text = "닫기"
