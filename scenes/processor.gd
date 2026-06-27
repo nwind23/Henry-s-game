@@ -8,11 +8,18 @@ const KITCHEN_RECIPES := [
 	{"id": "cheese", "inputs": {"milk": 1}, "output": "cheese", "time": 6.0},
 	{"id": "pickle", "inputs": {"tomato": 1}, "output": "pickle", "time": 8.0},
 	{"id": "jam", "inputs": {"berry": 2}, "output": "jam", "time": 8.0},
+	{"id": "mayo", "inputs": {"egg": 1}, "output": "mayo", "time": 6.0},
+	{"id": "cloth", "inputs": {"wool": 2}, "output": "cloth", "time": 9.0},
+	{"id": "duck_mayo", "inputs": {"duck_egg": 1}, "output": "duck_mayo", "time": 6.0},
+	{"id": "feather_deco", "inputs": {"duck_feather": 2}, "output": "feather_deco", "time": 8.0},
+	{"id": "honey", "inputs": {"flower": 3}, "output": "honey", "time": 8.0},
 ]
 const SMELTER_RECIPES := [
 	{"id": "copper_bar", "inputs": {"copper": 2, "coal": 1}, "output": "copper_bar", "time": 10.0},
 	{"id": "iron_bar", "inputs": {"iron": 2, "coal": 1}, "output": "iron_bar", "time": 12.0},
 	{"id": "gold_bar", "inputs": {"gold": 2, "coal": 1}, "output": "gold_bar", "time": 14.0},
+	{"id": "sirius_bar", "inputs": {"sirius": 20, "coal": 30}, "output": "sirius_bar", "time": 20.0},
+	{"id": "hyper_gem", "inputs": {"sirius_bar": 1, "iridium": 10, "coal": 30}, "output": "hyper_gem", "time": 30.0},
 ]
 
 var recipes: Array = []

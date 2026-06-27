@@ -1,0 +1,45 @@
+[gd_scene load_steps=12 format=3 uid="uid://c0ranch00hsg1"]
+
+[ext_resource type="Script" path="res://scenes/region_ground.gd" id="1_g"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_p"]
+[ext_resource type="PackedScene" path="res://scenes/travel_point.tscn" id="3_tp"]
+[ext_resource type="PackedScene" path="res://scenes/sheep.tscn" id="4_sheep"]
+[ext_resource type="PackedScene" path="res://scenes/pig.tscn" id="5_pig"]
+[ext_resource type="PackedScene" path="res://scenes/duck.tscn" id="6_duck"]
+[ext_resource type="PackedScene" path="res://scenes/rabbit.tscn" id="7_rabbit"]
+[ext_resource type="PackedScene" path="res://ui/travel_menu.tscn" id="8_tm"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="9_hud"]
+[ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="10_tc"]
+[ext_resource type="PackedScene" path="res://scenes/world_bounds.tscn" id="11_b"]
+
+[node name="Ranch" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_g")
+ground_color = Color(0.5, 0.66, 0.4, 1)
+accent_color = Color(0.4, 0.54, 0.32, 1)
+
+[node name="WorldBounds" parent="." instance=ExtResource("11_b")]
+
+[node name="Player" parent="." instance=ExtResource("2_p")]
+position = Vector2(110, 200)
+
+[node name="TravelPoint" parent="." instance=ExtResource("3_tp")]
+position = Vector2(40, 200)
+
+[node name="Sheep" parent="." instance=ExtResource("4_sheep")]
+position = Vector2(250, 150)
+
+[node name="Pig" parent="." instance=ExtResource("5_pig")]
+position = Vector2(420, 150)
+
+[node name="Duck" parent="." instance=ExtResource("6_duck")]
+position = Vector2(300, 285)
+
+[node name="Rabbit" parent="." instance=ExtResource("7_rabbit")]
+position = Vector2(480, 260)
+
+[node name="TravelMenu" parent="." instance=ExtResource("8_tm")]
+
+[node name="HUD" parent="." instance=ExtResource("9_hud")]
+
+[node name="TouchControls" parent="." instance=ExtResource("10_tc")]

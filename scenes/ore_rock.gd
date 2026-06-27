@@ -18,6 +18,13 @@ func _roll_ore(depth: int) -> String:
 		pool.append("iron")
 	if depth >= 400:
 		pool.append("gold")
+	if depth >= 600:
+		pool.append("magic_ore")
+		pool.append("opal")
+	if depth >= 850:
+		pool.append("sirius")
+	if depth >= 950:
+		pool.append("iridium")
 	return pool[randi() % pool.size()]
 
 func _draw() -> void:

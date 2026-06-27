@@ -50,7 +50,8 @@ func _make_row(recipe: Dictionary) -> Control:
 		parts.append("%s %d" % [GameState.item_name(item), int(recipe.inputs[item])])
 	var desc := Label.new()
 	desc.text = "%s → %s (%d초)" % [", ".join(parts), GameState.item_name(recipe.output), int(recipe.time)]
-	desc.custom_minimum_size = Vector2(230, 0)
+	desc.custom_minimum_size = Vector2(360, 0)
+	desc.clip_text = true
 	row.add_child(desc)
 
 	var btn := Button.new()

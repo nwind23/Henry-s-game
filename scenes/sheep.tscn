@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0sheep00hsg1"]
+
+[ext_resource type="Script" path="res://scenes/sheep.gd" id="1_s"]
+
+[sub_resource type="CircleShape2D" id="cs"]
+radius = 14.0
+
+[node name="Sheep" type="Node2D"]
+script = ExtResource("1_s")
+product = "wool"
+cooldown = 12.0
+wander_radius = 36.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("cs")

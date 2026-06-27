@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0pig000hsg1"]
+
+[ext_resource type="Script" path="res://scenes/pig.gd" id="1_p"]
+
+[sub_resource type="CircleShape2D" id="cs"]
+radius = 14.0
+
+[node name="Pig" type="Node2D"]
+script = ExtResource("1_p")
+product = "truffle"
+cooldown = 14.0
+wander_radius = 34.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("cs")

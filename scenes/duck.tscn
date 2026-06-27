@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0duck00hsg1"]
+
+[ext_resource type="Script" path="res://scenes/duck.gd" id="1_d"]
+
+[sub_resource type="CircleShape2D" id="cs"]
+radius = 13.0
+
+[node name="Duck" type="Node2D"]
+script = ExtResource("1_d")
+product = "duck_egg"
+secondary_product = "duck_feather"
+cooldown = 7.0
+wander_radius = 40.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("cs")
