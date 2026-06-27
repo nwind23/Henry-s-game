@@ -1,0 +1,44 @@
+extends Node
+## 게임 전역 상태(돈 + 인벤토리)를 담는 autoload 싱글톤.
+## 어디서나 GameState.add_item(...) / GameState.money 처럼 접근한다.
+
+signal money_changed(amount: int)
+signal inventory_changed(item: String, count: int)
+
+var money: int = 0
+var inventory: Dictionary = {}
+
+# 임시 판매가 — DECISIONS.md 참고. 가공·다른 동물 추가 시 여기에 채운다.
+const SELL_PRICES := {
+	"egg": 50,  # 달걀
+}
+
+# 화면 표시용 한국어 이름.
+const ITEM_NAMES := {
+	"egg": "달걀",
+}
+
+func item_name(item: String) -> String:
+	return ITEM_NAMES.get(item, item)
+
+func add_item(item: String, amount: int = 1) -> void:
+	inventory[item] = get_count(item) + amount
+	inventory_changed.emit(item, inventory[item])
+
+func get_count(item: String) -> int:
+	return int(inventory.get(item, 0))
+
+func add_money(amount: int) -> void:
+	money += amount
+	money_changed.emit(money)
+
+## 해당 아이템을 전부 판매하고, 번 돈을 반환한다.
+func sell_all(item: String) -> int:
+	var count := get_count(item)
+	if count <= 0:
+		return 0
+	var earned := count * int(SELL_PRICES.get(item, 0))
+	inventory[item] = 0
+	inventory_changed.emit(item, 0)
+	add_money(earned)
+	return earned

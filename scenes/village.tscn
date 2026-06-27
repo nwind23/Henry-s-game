@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0village0hsg1"]
+
+[ext_resource type="Script" path="res://scenes/village.gd" id="1_village"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/chicken.tscn" id="3_chicken"]
+[ext_resource type="PackedScene" path="res://scenes/shop.tscn" id="4_shop"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="5_hud"]
+
+[node name="Village" type="Node2D"]
+script = ExtResource("1_village")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(320, 200)
+
+[node name="Chicken" parent="." instance=ExtResource("3_chicken")]
+position = Vector2(210, 150)
+
+[node name="Shop" parent="." instance=ExtResource("4_shop")]
+position = Vector2(440, 120)
+
+[node name="HUD" parent="." instance=ExtResource("5_hud")]
