@@ -22,6 +22,9 @@ func interact() -> void:
 		_has = false
 		_t = COOLDOWN
 		GameState.add_item(PRODUCT, 1)
+		if randf() < 0.12:
+			GameState.add_item("forest_stone", 1)  # 숲의 돌(속성)
+			print("✨ 숲의 돌 발견!")
 		queue_redraw()
 		print("%s 채집! (보유: %d개)" % [GameState.item_name(PRODUCT), GameState.get_count(PRODUCT)])
 	else:
