@@ -8,6 +8,9 @@ signal inventory_changed(item: String, count: int)
 var money: int = 0
 var inventory: Dictionary = {}
 
+# 광산에서 현재 내려간 깊이(층). 지역을 오가도 유지된다.
+var mine_depth: int = 1
+
 # 임시 판매가 — DECISIONS.md 참고. 가공·다른 동물 추가 시 여기에 채운다.
 const SELL_PRICES := {
 	"egg": 50,    # 달걀
@@ -15,6 +18,11 @@ const SELL_PRICES := {
 	"cheese": 180, # 치즈(가공품)
 	"tomato": 40,  # 토마토(밭 작물)
 	"berry": 30,   # 산딸기(숲 채집)
+	"stone": 5,    # 돌
+	"coal": 15,    # 석탄
+	"copper": 25,  # 구리광석
+	"iron": 50,    # 철광석
+	"gold": 120,   # 금광석
 }
 
 # 화면 표시용 한국어 이름.
@@ -24,6 +32,11 @@ const ITEM_NAMES := {
 	"cheese": "치즈",
 	"tomato": "토마토",
 	"berry": "산딸기",
+	"stone": "돌",
+	"coal": "석탄",
+	"copper": "구리광석",
+	"iron": "철광석",
+	"gold": "금광석",
 }
 
 func item_name(item: String) -> String:

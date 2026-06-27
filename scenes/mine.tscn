@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0mine00hsg1"]
+
+[ext_resource type="Script" path="res://scenes/mine.gd" id="1_mine"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/region_gate.tscn" id="3_gate"]
+[ext_resource type="PackedScene" path="res://scenes/descend_point.tscn" id="4_desc"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="5_hud"]
+[ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="6_touch"]
+
+[node name="Mine" type="Node2D"]
+script = ExtResource("1_mine")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(110, 200)
+
+[node name="GateVillage" parent="." instance=ExtResource("3_gate")]
+position = Vector2(40, 200)
+target_scene = "res://scenes/village.tscn"
+label = "마을로"
+
+[node name="DescendPoint" parent="." instance=ExtResource("4_desc")]
+position = Vector2(430, 305)
+
+[node name="DepthUI" type="CanvasLayer" parent="."]
+
+[node name="DepthLabel" type="Label" parent="DepthUI"]
+anchors_preset = 0
+offset_left = 250.0
+offset_top = 10.0
+offset_right = 470.0
+offset_bottom = 36.0
+horizontal_alignment = 1
+text = "지하 1층"
+
+[node name="HUD" parent="." instance=ExtResource("5_hud")]
+
+[node name="TouchControls" parent="." instance=ExtResource("6_touch")]

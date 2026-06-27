@@ -30,8 +30,15 @@ func _rebuild() -> void:
 	money_label.text = "소지금: %dG" % GameState.money
 	for child in rows.get_children():
 		child.queue_free()
+	var any := false
 	for item in GameState.SELL_PRICES:
-		rows.add_child(_make_row(item))
+		if GameState.get_count(item) > 0:
+			rows.add_child(_make_row(item))
+			any = true
+	if not any:
+		var empty := Label.new()
+		empty.text = "팔 물건이 없습니다."
+		rows.add_child(empty)
 
 func _make_row(item: String) -> Control:
 	var count := GameState.get_count(item)

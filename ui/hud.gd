@@ -13,8 +13,10 @@ func _refresh() -> void:
 	money_label.text = "돈: %dG" % GameState.money
 	var lines: Array[String] = []
 	for item in GameState.SELL_PRICES:
-		lines.append("%s: %d개" % [GameState.item_name(item), GameState.get_count(item)])
-	items_label.text = "\n".join(lines)
+		var c := GameState.get_count(item)
+		if c > 0:
+			lines.append("%s: %d개" % [GameState.item_name(item), c])
+	items_label.text = "\n".join(lines) if not lines.is_empty() else "(가진 것 없음)"
 
 func _on_changed(_v: int) -> void:
 	_refresh()

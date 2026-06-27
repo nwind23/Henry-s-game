@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0descend0hsg1"]
+
+[ext_resource type="Script" path="res://scenes/descend_point.gd" id="1_desc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_desc"]
+size = Vector2(34, 34)
+
+[node name="DescendPoint" type="Node2D"]
+script = ExtResource("1_desc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_desc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -44.0
+offset_top = -38.0
+offset_right = 44.0
+offset_bottom = -18.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "더 내려가기"
