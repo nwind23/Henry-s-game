@@ -1,6 +1,7 @@
 extends CanvasLayer
 ## 가공 메뉴. 가공대(processor)가 open(proc)로 연다. 레시피를 골라 가공을 시작한다.
 
+@onready var title_label: Label = $Panel/Title
 @onready var status_label: Label = $Panel/Status
 @onready var rows: VBoxContainer = $Panel/Rows
 @onready var close_button: Button = $Panel/Close
@@ -29,13 +30,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _rebuild() -> void:
+	title_label.text = _proc.display_name()
 	if _proc.is_busy():
 		status_label.text = "가공 중... (%d초 남음)" % _proc.remaining()
 	else:
 		status_label.text = "무엇을 만들까?"
 	for child in rows.get_children():
 		child.queue_free()
-	for recipe in _proc.RECIPES:
+	for recipe in _proc.recipes:
 		rows.add_child(_make_row(recipe))
 
 func _make_row(recipe: Dictionary) -> Control:

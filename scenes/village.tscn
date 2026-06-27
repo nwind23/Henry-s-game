@@ -28,6 +28,10 @@ position = Vector2(150, 285)
 [node name="Processor" parent="." instance=ExtResource("5_proc")]
 position = Vector2(320, 95)
 
+[node name="Smelter" parent="." instance=ExtResource("5_proc")]
+position = Vector2(210, 90)
+kind = "smelter"
+
 [node name="Shop" parent="." instance=ExtResource("6_shop")]
 position = Vector2(440, 120)
 
