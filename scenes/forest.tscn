@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0forest0hsg1"]
+
+[ext_resource type="Script" path="res://scenes/forest.gd" id="1_forest"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/region_gate.tscn" id="3_gate"]
+[ext_resource type="PackedScene" path="res://scenes/berry_bush.tscn" id="4_berry"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="5_hud"]
+[ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="6_touch"]
+
+[node name="Forest" type="Node2D"]
+script = ExtResource("1_forest")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(110, 200)
+
+[node name="GateVillage" parent="." instance=ExtResource("3_gate")]
+position = Vector2(40, 200)
+target_scene = "res://scenes/village.tscn"
+label = "마을로"
+
+[node name="Bush1" parent="." instance=ExtResource("4_berry")]
+position = Vector2(260, 150)
+
+[node name="Bush2" parent="." instance=ExtResource("4_berry")]
+position = Vector2(380, 250)
+
+[node name="Bush3" parent="." instance=ExtResource("4_berry")]
+position = Vector2(470, 140)
+
+[node name="HUD" parent="." instance=ExtResource("5_hud")]
+
+[node name="TouchControls" parent="." instance=ExtResource("6_touch")]
