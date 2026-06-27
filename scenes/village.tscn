@@ -1,21 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0village0hsg1"]
+[gd_scene load_steps=9 format=3 uid="uid://c0village0hsg1"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_village"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/chicken.tscn" id="3_chicken"]
-[ext_resource type="PackedScene" path="res://scenes/shop.tscn" id="4_shop"]
-[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="5_hud"]
+[ext_resource type="PackedScene" path="res://scenes/cow.tscn" id="4_cow"]
+[ext_resource type="PackedScene" path="res://scenes/processor.tscn" id="5_proc"]
+[ext_resource type="PackedScene" path="res://scenes/shop.tscn" id="6_shop"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="7_hud"]
+[ext_resource type="PackedScene" path="res://ui/shop_menu.tscn" id="8_menu"]
+[ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="9_touch"]
 
 [node name="Village" type="Node2D"]
 script = ExtResource("1_village")
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
-position = Vector2(320, 200)
+position = Vector2(320, 210)
 
 [node name="Chicken" parent="." instance=ExtResource("3_chicken")]
 position = Vector2(210, 150)
 
-[node name="Shop" parent="." instance=ExtResource("4_shop")]
+[node name="Cow" parent="." instance=ExtResource("4_cow")]
+position = Vector2(150, 285)
+
+[node name="Processor" parent="." instance=ExtResource("5_proc")]
+position = Vector2(320, 95)
+
+[node name="Shop" parent="." instance=ExtResource("6_shop")]
 position = Vector2(440, 120)
 
-[node name="HUD" parent="." instance=ExtResource("5_hud")]
+[node name="HUD" parent="." instance=ExtResource("7_hud")]
+
+[node name="ShopMenu" parent="." instance=ExtResource("8_menu")]
+
+[node name="TouchControls" parent="." instance=ExtResource("9_touch")]

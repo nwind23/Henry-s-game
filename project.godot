@@ -25,6 +25,10 @@ window/stretch/aspect="keep"
 
 theme/custom_font="res://assets/fonts/Galmuri11.ttf"
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [input]
 
 move_up={

@@ -10,12 +10,16 @@ var inventory: Dictionary = {}
 
 # 임시 판매가 — DECISIONS.md 참고. 가공·다른 동물 추가 시 여기에 채운다.
 const SELL_PRICES := {
-	"egg": 50,  # 달걀
+	"egg": 50,    # 달걀
+	"milk": 80,   # 우유
+	"cheese": 180, # 치즈(가공품)
 }
 
 # 화면 표시용 한국어 이름.
 const ITEM_NAMES := {
 	"egg": "달걀",
+	"milk": "우유",
+	"cheese": "치즈",
 }
 
 func item_name(item: String) -> String:
