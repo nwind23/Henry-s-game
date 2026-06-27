@@ -8,19 +8,19 @@ script = ExtResource("1_hud")
 [node name="Panel" type="Panel" parent="."]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 168.0
-offset_bottom = 66.0
+offset_right = 172.0
+offset_bottom = 132.0
 
 [node name="MoneyLabel" type="Label" parent="Panel"]
 offset_left = 10.0
 offset_top = 6.0
-offset_right = 150.0
-offset_bottom = 28.0
+offset_right = 156.0
+offset_bottom = 30.0
 text = "돈: 0G"
 
-[node name="EggLabel" type="Label" parent="Panel"]
+[node name="ItemsLabel" type="Label" parent="Panel"]
 offset_left = 10.0
-offset_top = 30.0
-offset_right = 150.0
-offset_bottom = 52.0
+offset_top = 34.0
+offset_right = 156.0
+offset_bottom = 116.0
 text = "달걀: 0개"

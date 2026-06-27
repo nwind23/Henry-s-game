@@ -1,20 +1,23 @@
 extends CanvasLayer
-## 화면 좌상단 HUD: 소지금과 달걀 수를 한국어로 표시.
+## 화면 좌상단 HUD: 소지금과 보유 아이템(달걀/우유/치즈 …)을 한국어로 표시.
 
 @onready var money_label: Label = $Panel/MoneyLabel
-@onready var egg_label: Label = $Panel/EggLabel
+@onready var items_label: Label = $Panel/ItemsLabel
 
 func _ready() -> void:
-	GameState.money_changed.connect(_on_money_changed)
-	GameState.inventory_changed.connect(_on_inventory_changed)
+	GameState.money_changed.connect(_on_changed)
+	GameState.inventory_changed.connect(_on_inv_changed)
 	_refresh()
 
 func _refresh() -> void:
 	money_label.text = "돈: %dG" % GameState.money
-	egg_label.text = "달걀: %d개" % GameState.get_count("egg")
+	var lines: Array[String] = []
+	for item in GameState.SELL_PRICES:
+		lines.append("%s: %d개" % [GameState.item_name(item), GameState.get_count(item)])
+	items_label.text = "\n".join(lines)
 
-func _on_money_changed(_amount: int) -> void:
+func _on_changed(_v: int) -> void:
 	_refresh()
 
-func _on_inventory_changed(_item: String, _count: int) -> void:
+func _on_inv_changed(_i: String, _c: int) -> void:
 	_refresh()

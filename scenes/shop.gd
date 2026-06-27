@@ -1,12 +1,14 @@
 extends Node2D
-## 상점. 구역 안에서 상호작용하면 가진 달걀을 전부 판매한다.
+## 상점. 상호작용하면 판매 창(ShopMenu)을 연다.
 
 func interact() -> void:
-	var earned := GameState.sell_all("egg")
-	if earned > 0:
-		print("달걀을 팔아 %dG 획득! (소지금: %dG)" % [earned, GameState.money])
+	var menu := get_tree().get_first_node_in_group("shop_menu")
+	if menu:
+		menu.call("open")
 	else:
-		print("팔 달걀이 없다.")
+		# 안전장치: 메뉴가 없으면 달걀만 즉시 판매
+		var earned := GameState.sell_all("egg")
+		print("달걀 판매 → +%dG" % earned)
 
 func _draw() -> void:
 	# 벽

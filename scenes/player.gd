@@ -14,9 +14,8 @@ func _physics_process(_delta: float) -> void:
 	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = dir * SPEED
 	move_and_slide()
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
+	# interact 는 폴링으로 처리 → 키보드/패드/터치 버튼 모두 동일하게 동작
+	if Input.is_action_just_pressed("interact"):
 		var target := _nearest_interactable()
 		if target:
 			target.call("interact")

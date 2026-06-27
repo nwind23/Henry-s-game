@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0touch00hsg1"]
+
+[ext_resource type="Script" path="res://ui/touch_controls.gd" id="1_touch"]
+
+[node name="TouchControls" type="CanvasLayer"]
+layer = 2
+
+[node name="Pad" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_touch")
+
+[node name="ActButton" type="Button" parent="Pad"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -116.0
+offset_top = -116.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+modulate = Color(1, 1, 1, 0.7)
+text = "행동"
