@@ -64,12 +64,21 @@ godot --headless --import              # 에셋 임포트(CI/헤드리스)
 # 1) 웹 export templates 설치(약 1.28GB, 한 번만 — SessionStart 훅에는 미포함)
 bash .claude/hooks/install-export-templates.sh
 
-# 2) 빌드
-godot --headless --export-release "Web" build/web/index.html
+# 2) 빌드 (→ public/ 에 출력)
+godot --headless --export-release "Web" public/index.html
 
-# 3) 로컬 미리보기 (브라우저에서 http://localhost:8099/index.html)
-python3 -m http.server 8099 -d build/web
+# 3) 로컬 미리보기 (브라우저에서 http://localhost:8099/)
+python3 -m http.server 8099 -d public
 ```
 
-빌드 산출물(`build/`)은 git에 올리지 않습니다(`.gitignore` 제외). 헤드리스
-Chromium에서 부팅·렌더링(한국어 HUD 포함) 확인 완료.
+헤드리스 Chromium에서 부팅·렌더링(한국어 HUD 포함) 확인 완료.
+
+### Vercel 배포
+
+이 저장소는 Vercel에 연결되어 **`main`에 푸시하면 자동 배포**됩니다.
+Godot 웹 빌드(`public/`)를 **커밋**하고 `vercel.json`에서 정적 서빙
+(`outputDirectory: public`, 빌드 단계 없음)하도록 설정했습니다.
+
+> 참고: Vercel은 Godot를 빌드할 수 없어, 익스포트 결과(`public/`, `index.wasm`
+> 약 39MB 포함)를 직접 커밋합니다. 게임을 바꾼 뒤에는 위 2)로 **재익스포트한
+> `public/`을 커밋**해야 배포에 반영됩니다.
