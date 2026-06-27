@@ -3,7 +3,7 @@ extends Node2D
 ## 지역마다 product/색만 바꿔 재사용한다.
 
 @export var product: String = "ember"
-@export var cooldown: float = 6.0
+@export var cooldown: float = 10.0
 @export var body_color: Color = Color(0.5, 0.25, 0.15)
 @export var fruit_color: Color = Color(1.0, 0.5, 0.15)
 @export var rare_drop: String = ""      # 가끔 추가로 주는 속성의 돌

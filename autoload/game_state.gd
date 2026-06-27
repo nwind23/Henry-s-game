@@ -31,8 +31,77 @@ var pickaxe_level: int = 1
 
 signal pickaxe_changed()
 
-# 인트로(토캣몬 이야기)를 봤는지 — 세션당 한 번만.
+# 인트로(토캣몬 이야기)를 봤는지.
 var seen_intro: bool = false
+
+# --- 세이브/로드 (브라우저 user:// 에 저장 → 진행 유지) ---
+const SAVE_PATH := "user://save.json"
+var _dirty := false
+
+func _ready() -> void:
+	_load()
+	money_changed.connect(func(_a): mark_dirty())
+	inventory_changed.connect(func(_a, _b): mark_dirty())
+	gems_changed.connect(mark_dirty)
+	pickaxe_changed.connect(mark_dirty)
+	var t := Timer.new()
+	t.wait_time = 2.0
+	t.autostart = true
+	add_child(t)
+	t.timeout.connect(func():
+		if _dirty:
+			_dirty = false
+			_write())
+
+func mark_dirty() -> void:
+	_dirty = true
+
+## 처음부터 다시 시작 — 저장을 지우고 모든 상태를 초기화한다.
+func reset_game() -> void:
+	money = 0
+	inventory = {}
+	gems = {}
+	has_rainbow = false
+	mine_depth = 1
+	pickaxe_level = 1
+	seen_intro = false
+	if FileAccess.file_exists(SAVE_PATH):
+		DirAccess.remove_absolute(SAVE_PATH)
+	_dirty = false
+	money_changed.emit(money)
+	gems_changed.emit()
+
+func _write() -> void:
+	var data := {
+		"money": money, "inventory": inventory, "gems": gems,
+		"has_rainbow": has_rainbow, "mine_depth": mine_depth,
+		"pickaxe_level": pickaxe_level, "seen_intro": seen_intro,
+	}
+	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if f:
+		f.store_string(JSON.stringify(data))
+		f.close()
+
+func _load() -> void:
+	if not FileAccess.file_exists(SAVE_PATH):
+		return
+	var f := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if not f:
+		return
+	var d = JSON.parse_string(f.get_as_text())
+	f.close()
+	if typeof(d) != TYPE_DICTIONARY:
+		return
+	money = int(d.get("money", 0))
+	var inv: Dictionary = d.get("inventory", {})
+	inventory = {}
+	for k in inv:
+		inventory[k] = int(inv[k])
+	gems = d.get("gems", {})
+	has_rainbow = bool(d.get("has_rainbow", false))
+	mine_depth = int(d.get("mine_depth", 1))
+	pickaxe_level = int(d.get("pickaxe_level", 1))
+	seen_intro = bool(d.get("seen_intro", false))
 
 # 임시 판매가 — DECISIONS.md 참고. 가공·다른 동물 추가 시 여기에 채운다.
 const SELL_PRICES := {
@@ -151,10 +220,10 @@ func add_money(amount: int) -> void:
 # 현재 레벨에서 다음 레벨로 올리는 비용. index = 현재 레벨.
 var PICKAXE_UPGRADES: Array = [
 	{},  # 0 (미사용)
-	{"money": 200, "items": {"fire_stone": 1}},                       # 1 -> 2
-	{"money": 500, "items": {"water_stone": 1, "lightning_stone": 1}}, # 2 -> 3
-	{"money": 1000, "items": {"forest_stone": 1, "ice_stone": 1}},     # 3 -> 4
-	{"money": 2000, "items": {"dark_stone": 1, "light_stone": 1}},     # 4 -> 5
+	{"money": 500, "items": {"fire_stone": 2}},                        # 1 -> 2
+	{"money": 1500, "items": {"water_stone": 2, "lightning_stone": 2}}, # 2 -> 3
+	{"money": 4000, "items": {"forest_stone": 2, "ice_stone": 2}},      # 3 -> 4
+	{"money": 10000, "items": {"dark_stone": 3, "light_stone": 3}},     # 4 -> 5
 ]
 const MAX_PICKAXE := 5
 

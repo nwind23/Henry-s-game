@@ -32,17 +32,19 @@ func _spawn_rocks() -> void:
 		add_child(rock)
 		_rocks.append(rock)
 
-## descend_point 가 호출한다.
+## descend_point 가 호출한다. 바닥(1000층)에선 같은 자리에서 다시 채굴(재생성)된다.
 func descend() -> void:
-	if GameState.mine_depth >= GOAL_DEPTH:
-		_reach_bottom()
-		return
+	var first_bottom := GameState.mine_depth < GOAL_DEPTH
 	GameState.mine_depth = min(GameState.mine_depth + DESCEND_STEP, GOAL_DEPTH)
-	_spawn_rocks()
+	GameState.mark_dirty()
+	_spawn_rocks()  # 바닥에서도 다시 광맥이 생겨 시리우스·이리듐을 계속 캘 수 있다
 	_update_label()
-	print("지하 %d층으로 내려간다" % GameState.mine_depth)
 	if GameState.mine_depth >= GOAL_DEPTH:
-		_reach_bottom()
+		print("지하 %d층(맨 아래) — 광맥 재생성" % GameState.mine_depth)
+		if first_bottom and not GameState.has_gem("faith"):
+			_reach_bottom()
+	else:
+		print("지하 %d층으로 내려간다" % GameState.mine_depth)
 
 func _reach_bottom() -> void:
 	GameState.collect_gem("faith")  # 신념의 보석

@@ -7,6 +7,7 @@ func _ready() -> void:
 	queue_redraw()
 	if not GameState.seen_intro:
 		GameState.seen_intro = true
+		GameState.mark_dirty()
 		_show_intro.call_deferred()
 
 func _show_intro() -> void:

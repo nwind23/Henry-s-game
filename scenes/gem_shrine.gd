@@ -4,7 +4,7 @@ extends Node2D
 
 @export var gem_id: String = "forest"
 @export var cost_item: String = "berry"
-@export var cost_amount: int = 10
+@export var cost_amount: int = 50
 
 @onready var _label: Label = $Label
 

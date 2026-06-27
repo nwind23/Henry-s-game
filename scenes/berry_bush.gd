@@ -2,7 +2,7 @@ extends Node2D
 ## 산딸기 덤불 — 상호작용으로 채집(쿨다운 뒤 다시 열림). 숲 지역에 배치.
 
 const PRODUCT := "berry"
-const COOLDOWN := 6.0
+const COOLDOWN := 10.0
 
 var _has := true
 var _t := 0.0
