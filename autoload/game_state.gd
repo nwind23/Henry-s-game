@@ -18,6 +18,8 @@ const SELL_PRICES := {
 	"cheese": 180, # 치즈(가공품)
 	"tomato": 40,  # 토마토(밭 작물)
 	"berry": 30,   # 산딸기(숲 채집)
+	"pickle": 90,  # 피클(토마토 가공)
+	"jam": 80,     # 잼(산딸기 가공)
 	"stone": 5,    # 돌
 	"coal": 15,    # 석탄
 	"copper": 25,  # 구리광석
@@ -32,6 +34,8 @@ const ITEM_NAMES := {
 	"cheese": "치즈",
 	"tomato": "토마토",
 	"berry": "산딸기",
+	"pickle": "피클",
+	"jam": "잼",
 	"stone": "돌",
 	"coal": "석탄",
 	"copper": "구리광석",
