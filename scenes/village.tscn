@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0village0hsg1"]
+[gd_scene load_steps=10 format=3 uid="uid://c0village0hsg1"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_village"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://ui/hud.tscn" id="7_hud"]
 [ext_resource type="PackedScene" path="res://ui/shop_menu.tscn" id="8_menu"]
 [ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="9_touch"]
+[ext_resource type="PackedScene" path="res://scenes/crop_plot.tscn" id="10_crop"]
 
 [node name="Village" type="Node2D"]
 script = ExtResource("1_village")
@@ -27,6 +28,15 @@ position = Vector2(320, 95)
 
 [node name="Shop" parent="." instance=ExtResource("6_shop")]
 position = Vector2(440, 120)
+
+[node name="Plot1" parent="." instance=ExtResource("10_crop")]
+position = Vector2(225, 325)
+
+[node name="Plot2" parent="." instance=ExtResource("10_crop")]
+position = Vector2(285, 325)
+
+[node name="Plot3" parent="." instance=ExtResource("10_crop")]
+position = Vector2(345, 325)
 
 [node name="HUD" parent="." instance=ExtResource("7_hud")]
 

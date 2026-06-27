@@ -13,6 +13,7 @@ const SELL_PRICES := {
 	"egg": 50,    # 달걀
 	"milk": 80,   # 우유
 	"cheese": 180, # 치즈(가공품)
+	"tomato": 40,  # 토마토(밭 작물)
 }
 
 # 화면 표시용 한국어 이름.
@@ -20,6 +21,7 @@ const ITEM_NAMES := {
 	"egg": "달걀",
 	"milk": "우유",
 	"cheese": "치즈",
+	"tomato": "토마토",
 }
 
 func item_name(item: String) -> String:
