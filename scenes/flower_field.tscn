@@ -27,18 +27,21 @@ position = Vector2(40, 200)
 [node name="Flower1" parent="." instance=ExtResource("4_gn")]
 position = Vector2(260, 150)
 product = "flower"
+rare_drop = "light_stone"
 body_color = Color(0.3, 0.55, 0.3, 1)
 fruit_color = Color(1.0, 0.5, 0.7, 1)
 
 [node name="Flower2" parent="." instance=ExtResource("4_gn")]
 position = Vector2(380, 250)
 product = "flower"
+rare_drop = "light_stone"
 body_color = Color(0.3, 0.55, 0.3, 1)
 fruit_color = Color(1.0, 0.8, 0.3, 1)
 
 [node name="Flower3" parent="." instance=ExtResource("4_gn")]
 position = Vector2(470, 140)
 product = "flower"
+rare_drop = "light_stone"
 body_color = Color(0.3, 0.55, 0.3, 1)
 fruit_color = Color(0.8, 0.5, 1.0, 1)
 

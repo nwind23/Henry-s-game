@@ -11,6 +11,7 @@ const REGIONS := [
 	{"name": "번개산", "scene": "res://scenes/thunder.tscn"},
 	{"name": "꽃의 들판", "scene": "res://scenes/flower_field.tscn"},
 	{"name": "광활한 바다", "scene": "res://scenes/sea.tscn"},
+	{"name": "강", "scene": "res://scenes/river.tscn"},
 ]
 
 @onready var rows: VBoxContainer = $Panel/Rows

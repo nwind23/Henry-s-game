@@ -6,6 +6,8 @@ extends Node2D
 @export var cooldown: float = 6.0
 @export var body_color: Color = Color(0.5, 0.25, 0.15)
 @export var fruit_color: Color = Color(1.0, 0.5, 0.15)
+@export var rare_drop: String = ""      # 가끔 추가로 주는 속성의 돌
+@export var rare_chance: float = 0.12
 
 var _has := true
 var _t := 0.0
@@ -25,6 +27,9 @@ func interact() -> void:
 		_has = false
 		_t = cooldown
 		GameState.add_item(product, 1)
+		if rare_drop != "" and randf() < rare_chance:
+			GameState.add_item(rare_drop, 1)
+			print("✨ %s 발견!" % GameState.item_name(rare_drop))
 		queue_redraw()
 		print("%s 획득! (보유: %d개)" % [GameState.item_name(product), GameState.get_count(product)])
 	else:

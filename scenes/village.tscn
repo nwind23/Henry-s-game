@@ -16,6 +16,10 @@
 [ext_resource type="PackedScene" path="res://ui/lab_menu.tscn" id="14_lm"]
 [ext_resource type="PackedScene" path="res://ui/travel_menu.tscn" id="15_tm"]
 [ext_resource type="PackedScene" path="res://scenes/world_bounds.tscn" id="16_bounds"]
+[ext_resource type="PackedScene" path="res://scenes/blacksmith.tscn" id="17_smith"]
+[ext_resource type="PackedScene" path="res://ui/smith_menu.tscn" id="18_sm"]
+[ext_resource type="PackedScene" path="res://scenes/npc.tscn" id="19_npc"]
+[ext_resource type="PackedScene" path="res://ui/dialogue_box.tscn" id="20_dlg"]
 
 [node name="Village" type="Node2D"]
 y_sort_enabled = true
@@ -57,6 +61,21 @@ position = Vector2(345, 325)
 [node name="TravelPoint" parent="." instance=ExtResource("11_tp")]
 position = Vector2(600, 75)
 
+[node name="Blacksmith" parent="." instance=ExtResource("17_smith")]
+position = Vector2(95, 205)
+
+[node name="Npc1" parent="." instance=ExtResource("19_npc")]
+position = Vector2(600, 230)
+npc_name = "백수"
+line = "아~ 일하기 싫다. 근데 토캣몬 너는 참 부지런하네!"
+body_color = Color(0.5, 0.55, 0.7, 1)
+
+[node name="Npc2" parent="." instance=ExtResource("19_npc")]
+position = Vector2(120, 360)
+npc_name = "이웃"
+line = "이 마을 좋지? 동물도 키우고 보석도 모으자. 화이팅!"
+body_color = Color(0.7, 0.5, 0.45, 1)
+
 [node name="HUD" parent="." instance=ExtResource("7_hud")]
 
 [node name="ShopMenu" parent="." instance=ExtResource("8_menu")]
@@ -66,5 +85,9 @@ position = Vector2(600, 75)
 [node name="LabMenu" parent="." instance=ExtResource("14_lm")]
 
 [node name="TravelMenu" parent="." instance=ExtResource("15_tm")]
+
+[node name="SmithMenu" parent="." instance=ExtResource("18_sm")]
+
+[node name="DialogueBox" parent="." instance=ExtResource("20_dlg")]
 
 [node name="TouchControls" parent="." instance=ExtResource("9_touch")]

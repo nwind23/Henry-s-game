@@ -26,6 +26,14 @@ var inventory: Dictionary = {}
 # 광산에서 현재 내려간 깊이(층). 지역을 오가도 유지된다.
 var mine_depth: int = 1
 
+# 곡괭이 등급(1~). 높을수록 한 번에 캐는 광물 수가 늘어난다.
+var pickaxe_level: int = 1
+
+signal pickaxe_changed()
+
+# 인트로(토캣몬 이야기)를 봤는지 — 세션당 한 번만.
+var seen_intro: bool = false
+
 # 임시 판매가 — DECISIONS.md 참고. 가공·다른 동물 추가 시 여기에 채운다.
 const SELL_PRICES := {
 	"egg": 50,    # 달걀
@@ -63,6 +71,16 @@ const SELL_PRICES := {
 	"gold_bar": 320,   # 금주괴(제련)
 	"sirius_bar": 1200,  # 시리우스 주괴
 	"hyper_gem": 5000,   # 하이퍼 시리우스메가 보석
+	"minnow": 20,    # 송사리(낚시)
+	"carp": 50,      # 붕어(낚시)
+	"bigfish": 120,  # 큰물고기(낚시)
+	"fire_stone": 120,     # 불의 돌(속성)
+	"water_stone": 120,    # 물의 돌
+	"lightning_stone": 120, # 번개의 돌
+	"forest_stone": 120,   # 숲의 돌
+	"ice_stone": 140,      # 얼음의 돌
+	"dark_stone": 160,     # 어둠의 돌
+	"light_stone": 160,    # 빛의 돌
 }
 
 # 화면 표시용 한국어 이름.
@@ -102,6 +120,16 @@ const ITEM_NAMES := {
 	"gold_bar": "금주괴",
 	"sirius_bar": "시리우스주괴",
 	"hyper_gem": "하이퍼시리우스메가보석",
+	"minnow": "송사리",
+	"carp": "붕어",
+	"bigfish": "큰물고기",
+	"fire_stone": "불의 돌",
+	"water_stone": "물의 돌",
+	"lightning_stone": "번개의 돌",
+	"forest_stone": "숲의 돌",
+	"ice_stone": "얼음의 돌",
+	"dark_stone": "어둠의 돌",
+	"light_stone": "빛의 돌",
 }
 
 func item_name(item: String) -> String:
@@ -117,6 +145,45 @@ func get_count(item: String) -> int:
 func add_money(amount: int) -> void:
 	money += amount
 	money_changed.emit(money)
+
+## --- 곡괭이(도구) 강화 ---
+
+# 현재 레벨에서 다음 레벨로 올리는 비용. index = 현재 레벨.
+var PICKAXE_UPGRADES: Array = [
+	{},  # 0 (미사용)
+	{"money": 200, "items": {"fire_stone": 1}},                       # 1 -> 2
+	{"money": 500, "items": {"water_stone": 1, "lightning_stone": 1}}, # 2 -> 3
+	{"money": 1000, "items": {"forest_stone": 1, "ice_stone": 1}},     # 3 -> 4
+	{"money": 2000, "items": {"dark_stone": 1, "light_stone": 1}},     # 4 -> 5
+]
+const MAX_PICKAXE := 5
+
+func pickaxe_upgrade_cost() -> Dictionary:
+	if pickaxe_level >= MAX_PICKAXE:
+		return {}
+	return PICKAXE_UPGRADES[pickaxe_level]
+
+func can_upgrade_pickaxe() -> bool:
+	var c := pickaxe_upgrade_cost()
+	if c.is_empty():
+		return false
+	if money < int(c.money):
+		return false
+	for it in c.items:
+		if get_count(it) < int(c.items[it]):
+			return false
+	return true
+
+func upgrade_pickaxe() -> bool:
+	if not can_upgrade_pickaxe():
+		return false
+	var c := pickaxe_upgrade_cost()
+	add_money(-int(c.money))
+	for it in c.items:
+		add_item(it, -int(c.items[it]))
+	pickaxe_level += 1
+	pickaxe_changed.emit()
+	return true
 
 ## --- 전설의 보석 ---
 

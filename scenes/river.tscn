@@ -1,0 +1,36 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0river00hsg1"]
+
+[ext_resource type="Script" path="res://scenes/region_ground.gd" id="1_g"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_p"]
+[ext_resource type="PackedScene" path="res://scenes/travel_point.tscn" id="3_tp"]
+[ext_resource type="PackedScene" path="res://scenes/fishing_spot.tscn" id="4_fs"]
+[ext_resource type="PackedScene" path="res://ui/travel_menu.tscn" id="5_tm"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="6_hud"]
+[ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="7_tc"]
+[ext_resource type="PackedScene" path="res://scenes/world_bounds.tscn" id="8_b"]
+
+[node name="River" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_g")
+ground_color = Color(0.35, 0.58, 0.5, 1)
+accent_color = Color(0.25, 0.45, 0.42, 1)
+
+[node name="WorldBounds" parent="." instance=ExtResource("8_b")]
+
+[node name="Player" parent="." instance=ExtResource("2_p")]
+position = Vector2(110, 200)
+
+[node name="TravelPoint" parent="." instance=ExtResource("3_tp")]
+position = Vector2(40, 200)
+
+[node name="Spot1" parent="." instance=ExtResource("4_fs")]
+position = Vector2(300, 150)
+
+[node name="Spot2" parent="." instance=ExtResource("4_fs")]
+position = Vector2(460, 250)
+
+[node name="TravelMenu" parent="." instance=ExtResource("5_tm")]
+
+[node name="HUD" parent="." instance=ExtResource("6_hud")]
+
+[node name="TouchControls" parent="." instance=ExtResource("7_tc")]

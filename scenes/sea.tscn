@@ -27,18 +27,21 @@ position = Vector2(40, 200)
 [node name="Clam1" parent="." instance=ExtResource("4_gn")]
 position = Vector2(260, 150)
 product = "pearl"
+rare_drop = "water_stone"
 body_color = Color(0.62, 0.76, 0.86, 1)
 fruit_color = Color(0.97, 0.97, 1.0, 1)
 
 [node name="Clam2" parent="." instance=ExtResource("4_gn")]
 position = Vector2(380, 250)
 product = "pearl"
+rare_drop = "water_stone"
 body_color = Color(0.62, 0.76, 0.86, 1)
 fruit_color = Color(0.97, 0.97, 1.0, 1)
 
 [node name="Clam3" parent="." instance=ExtResource("4_gn")]
 position = Vector2(470, 140)
 product = "pearl"
+rare_drop = "water_stone"
 body_color = Color(0.62, 0.76, 0.86, 1)
 fruit_color = Color(0.97, 0.97, 1.0, 1)
 

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0npc000hsg1"]
+
+[ext_resource type="Script" path="res://scenes/npc.gd" id="1_npc"]
+
+[sub_resource type="CircleShape2D" id="cs"]
+radius = 18.0
+
+[node name="Npc" type="Node2D"]
+script = ExtResource("1_npc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("cs")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -40.0
+offset_right = 50.0
+offset_bottom = -22.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "이웃"
