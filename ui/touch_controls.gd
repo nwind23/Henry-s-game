@@ -26,22 +26,28 @@ func _process(_delta: float) -> void:
 	_apply_move()
 
 func _input(event: InputEvent) -> void:
-	if get_tree().paused:
-		return
-	var vp := get_viewport_rect().size
 	if event is InputEventScreenTouch:
 		if event.pressed:
-			if not _active and event.position.x < vp.x * 0.5:
+			# 새 터치는 화면 왼쪽이면 스틱을 (재)시작한다.
+			# not _active 가드를 두지 않아, 이전 터치의 release 를 놓쳐도 새 터치로 복구된다.
+			if not get_tree().paused and event.position.x < get_viewport_rect().size.x * 0.5:
 				_active = true
 				_index = event.index
 				_origin = event.position
 				_knob = Vector2.ZERO
 				queue_redraw()
 		elif _active and event.index == _index:
+			# release 는 일시정지 중에도 반드시 처리해서 스틱이 고정되지 않게 한다.
 			_end_stick()
-	elif event is InputEventScreenDrag and _active and event.index == _index:
+	elif event is InputEventScreenDrag and _active and event.index == _index and not get_tree().paused:
 		_knob = (event.position - _origin).limit_length(RADIUS)
 		queue_redraw()
+
+func _notification(what: int) -> void:
+	# 창/앱 포커스를 잃으면(탭 전환 등) 스틱을 해제해 무한 이동을 막는다.
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT or what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+		if _active:
+			_end_stick()
 
 func _end_stick() -> void:
 	_active = false
