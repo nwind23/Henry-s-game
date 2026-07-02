@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 		if _timer <= 0.0:
 			_busy = false
 			GameState.add_item(_output, 1)
-			print("%s 완성! (보유: %d개)" % [GameState.item_name(_output), GameState.get_count(_output)])
+			GameState.toast("%s 완성! (보유: %d개)" % [GameState.item_name(_output), GameState.get_count(_output)])
 			_output = ""
 			queue_redraw()
 
@@ -81,12 +81,14 @@ func start_recipe(recipe: Dictionary) -> bool:
 	_timer = recipe.time
 	_output = recipe.output
 	queue_redraw()
-	print("%s 가공 시작..." % GameState.item_name(_output))
+	GameState.toast("%s 가공 시작..." % GameState.item_name(_output))
 	return true
 
 func _draw() -> void:
-	# 가공 중이면 진행 바를 본체 아래에 표시
+	# 가공 중이면 진행 바를 건물 스프라이트 아래에 표시(가려지지 않게)
 	if _busy:
+		var bar_y := 46.0 if kind == "smelter" else 32.0
 		var p := 1.0 - clampf(_timer / _time_total, 0.0, 1.0)
-		draw_rect(Rect2(-20, 16, 40, 5), Color(0.15, 0.15, 0.15))
-		draw_rect(Rect2(-20, 16, 40 * p, 5), Color(0.3, 0.85, 0.4))
+		draw_rect(Rect2(-22, bar_y - 1, 44, 8), Color(0.05, 0.05, 0.07))     # 테두리
+		draw_rect(Rect2(-20, bar_y, 40, 6), Color(0.18, 0.18, 0.2))
+		draw_rect(Rect2(-20, bar_y, 40 * p, 6), Color(0.3, 0.85, 0.4))

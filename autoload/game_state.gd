@@ -5,6 +5,12 @@ extends Node
 signal money_changed(amount: int)
 signal inventory_changed(item: String, count: int)
 signal gems_changed()
+signal toasted(msg: String)
+
+## 화면 토스트 알림. HUD 가 받아서 상단 중앙에 잠깐 띄운다.
+func toast(msg: String) -> void:
+	print(msg)
+	toasted.emit(msg)
 
 # 7개의 전설의 보석(엔딩 수집품). 각 지역에서 하나씩 획득한다.
 var GEMS: Array = [

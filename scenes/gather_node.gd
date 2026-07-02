@@ -29,11 +29,11 @@ func interact() -> void:
 		GameState.add_item(product, 1)
 		if rare_drop != "" and randf() < rare_chance:
 			GameState.add_item(rare_drop, 1)
-			print("✨ %s 발견!" % GameState.item_name(rare_drop))
+			GameState.toast("✨ %s 발견!" % GameState.item_name(rare_drop))
 		queue_redraw()
-		print("%s 획득! (보유: %d개)" % [GameState.item_name(product), GameState.get_count(product)])
+		GameState.toast("%s 획득! (보유: %d개)" % [GameState.item_name(product), GameState.get_count(product)])
 	else:
-		print("%s이(가) 아직 다시 생기지 않았다..." % GameState.item_name(product))
+		GameState.toast("%s이(가) 아직 다시 생기지 않았다..." % GameState.item_name(product))
 
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, 11, body_color)

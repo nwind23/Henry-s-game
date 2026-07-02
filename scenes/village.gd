@@ -22,5 +22,5 @@ func _show_intro() -> void:
 func _draw() -> void:
 	# 잔디 바닥 (뷰포트 전체)
 	draw_texture_rect(GRASS_TEX, Rect2(0, 0, 640, 360), true)
-	# 상점 앞 흙길
-	draw_texture_rect(PATH_TEX, Rect2(408, 150, 64, 200), true)
+	# 상점 앞 흙길(상점 문에서 아래로)
+	draw_texture_rect(PATH_TEX, Rect2(416, 154, 48, 206), true)

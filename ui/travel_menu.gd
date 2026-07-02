@@ -14,7 +14,7 @@ const REGIONS := [
 	{"name": "강", "scene": "res://scenes/river.tscn"},
 ]
 
-@onready var rows: VBoxContainer = $Panel/Rows
+@onready var rows: VBoxContainer = $Panel/Scroll/Rows
 @onready var close_button: Button = $Panel/Close
 
 func _ready() -> void:

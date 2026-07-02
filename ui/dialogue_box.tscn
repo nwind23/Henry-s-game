@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0dialog00hsg1"]
+[gd_scene load_steps=3 format=3 uid="uid://c0dialog00hsg1"]
 
 [ext_resource type="Script" path="res://ui/dialogue_box.gd" id="1_d"]
+[ext_resource type="StyleBoxFlat" path="res://ui/panel_style.tres" id="2_style"]
 
 [node name="DialogueBox" type="CanvasLayer"]
 layer = 10
 script = ExtResource("1_d")
 
 [node name="Panel" type="Panel" parent="."]
+theme_override_styles/panel = ExtResource("2_style")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

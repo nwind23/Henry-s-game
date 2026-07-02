@@ -29,20 +29,20 @@ func interact() -> void:
 	match _state:
 		State.EMPTY:
 			if GameState.money < SEED_COST:
-				print("씨앗 살 돈이 부족하다 (%dG 필요)" % SEED_COST)
+				GameState.toast("씨앗 살 돈이 부족하다 (%dG 필요)" % SEED_COST)
 				return
 			GameState.add_money(-SEED_COST)
 			_state = State.GROWING
 			_timer = GROW_TIME
 			queue_redraw()
-			print("%s 씨앗을 심었다 (-%dG)" % [GameState.item_name(CROP), SEED_COST])
+			GameState.toast("%s 씨앗을 심었다 (-%dG)" % [GameState.item_name(CROP), SEED_COST])
 		State.GROWING:
-			print("자라는 중... (%d초 남음)" % ceili(_timer))
+			GameState.toast("자라는 중... (%d초 남음)" % ceili(_timer))
 		State.RIPE:
 			GameState.add_item(CROP, 1)
 			_state = State.EMPTY
 			queue_redraw()
-			print("%s 수확! (보유: %d개)" % [GameState.item_name(CROP), GameState.get_count(CROP)])
+			GameState.toast("%s 수확! (보유: %d개)" % [GameState.item_name(CROP), GameState.get_count(CROP)])
 
 func _draw() -> void:
 	# 밭(흙) — 비어있으면 마른 흙, 심으면 물 준 밭
