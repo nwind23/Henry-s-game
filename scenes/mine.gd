@@ -42,18 +42,18 @@ func descend() -> void:
 	_spawn_rocks()  # 바닥에서도 다시 광맥이 생겨 시리우스·이리듐을 계속 캘 수 있다
 	_update_label()
 	if GameState.mine_depth >= GOAL_DEPTH:
-		print("지하 %d층(맨 아래) — 광맥 재생성" % GameState.mine_depth)
+		GameState.toast("지하 %d층(맨 아래) — 광맥 재생성" % GameState.mine_depth)
 		if first_bottom and not GameState.has_gem("faith"):
 			_reach_bottom()
 	else:
-		print("지하 %d층으로 내려간다" % GameState.mine_depth)
+		GameState.toast("지하 %d층으로 내려간다" % GameState.mine_depth)
 
 func _reach_bottom() -> void:
 	GameState.collect_gem("faith")  # 신념의 보석
 	_update_label()
 	_ending.visible = true
 	get_tree().paused = true
-	print("광산 맨 아래 도달! 신념의 보석 획득")
+	GameState.toast("광산 맨 아래 도달! 신념의 보석 획득")
 
 func _close_ending() -> void:
 	_ending.visible = false

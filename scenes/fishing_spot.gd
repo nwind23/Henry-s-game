@@ -16,17 +16,17 @@ func _process(delta: float) -> void:
 			_busy = false
 			var f: String = FISH[randi() % FISH.size()]
 			GameState.add_item(f, 1)
-			print("%s 낚음! (보유: %d개)" % [GameState.item_name(f), GameState.get_count(f)])
+			GameState.toast("%s 낚음! (보유: %d개)" % [GameState.item_name(f), GameState.get_count(f)])
 			queue_redraw()
 
 func interact() -> void:
 	if _busy:
-		print("낚는 중...")
+		GameState.toast("낚는 중...")
 		return
 	_busy = true
 	_t = randf_range(2.0, 4.0)
 	queue_redraw()
-	print("낚시 시작...")
+	GameState.toast("낚시 시작...")
 
 func _draw() -> void:
 	# 나무 부두

@@ -24,11 +24,11 @@ func interact() -> void:
 		GameState.add_item(PRODUCT, 1)
 		if randf() < 0.12:
 			GameState.add_item("forest_stone", 1)  # 숲의 돌(속성)
-			print("✨ 숲의 돌 발견!")
+			GameState.toast("✨ 숲의 돌 발견!")
 		queue_redraw()
-		print("%s 채집! (보유: %d개)" % [GameState.item_name(PRODUCT), GameState.get_count(PRODUCT)])
+		GameState.toast("%s 채집! (보유: %d개)" % [GameState.item_name(PRODUCT), GameState.get_count(PRODUCT)])
 	else:
-		print("%s가 아직 다시 열리지 않았다..." % GameState.item_name(PRODUCT))
+		GameState.toast("%s가 아직 다시 열리지 않았다..." % GameState.item_name(PRODUCT))
 
 func _draw() -> void:
 	# 덤불

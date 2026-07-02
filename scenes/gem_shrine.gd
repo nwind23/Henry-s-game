@@ -27,23 +27,40 @@ func _gem_name() -> String:
 
 func interact() -> void:
 	if GameState.has_gem(gem_id):
-		print("%s은(는) 이미 가지고 있다." % _gem_name())
+		GameState.toast("%s은(는) 이미 가지고 있다." % _gem_name())
 		return
 	if GameState.get_count(cost_item) < cost_amount:
-		print("%s이(가) %d개 필요하다. (지금 %d개)" % [GameState.item_name(cost_item), cost_amount, GameState.get_count(cost_item)])
+		GameState.toast("%s이(가) %d개 필요하다. (지금 %d개)" % [GameState.item_name(cost_item), cost_amount, GameState.get_count(cost_item)])
 		return
 	GameState.add_item(cost_item, -cost_amount)
 	GameState.collect_gem(gem_id)
 	queue_redraw()
-	print("✨ %s을(를) 얻었다!" % _gem_name())
+	GameState.toast("✨ %s을(를) 얻었다!" % _gem_name())
+
+func _gem_color() -> Color:
+	for g in GameState.GEMS:
+		if g.id == gem_id:
+			return g.color
+	return Color(0.6, 0.6, 0.6)
 
 func _draw() -> void:
-	# 제단 받침
-	draw_rect(Rect2(-16, 2, 32, 14), Color(0.4, 0.4, 0.46))
-	draw_rect(Rect2(-12, -4, 24, 8), Color(0.5, 0.5, 0.56))
-	# 보석(획득 전엔 빈 받침/반투명, 획득 후엔 색 보석)
+	# 돌 제단(계단식 받침 + 명암)
+	draw_rect(Rect2(-18, 8, 36, 8), Color(0.36, 0.36, 0.42))
+	draw_rect(Rect2(-14, 0, 28, 9), Color(0.46, 0.46, 0.52))
+	draw_rect(Rect2(-10, -6, 20, 7), Color(0.55, 0.55, 0.61))
+	draw_rect(Rect2(-18, 8, 36, 8), Color(0.22, 0.22, 0.27), false, 1.5)
+	# 기둥 문양
+	draw_line(Vector2(-8, -2), Vector2(-8, 5), Color(0.32, 0.32, 0.38), 1.5)
+	draw_line(Vector2(8, -2), Vector2(8, 5), Color(0.32, 0.32, 0.38), 1.5)
+	# 보석: 그 지역 보석의 고유색. 획득 전엔 흐릿하게, 획득 후엔 빛나게.
 	var got := GameState.has_gem(gem_id)
-	var col := Color(0.2, 0.7, 0.3) if got else Color(0.6, 0.6, 0.6, 0.4)
+	var base := _gem_color()
+	var col := base if got else Color(base.r, base.g, base.b, 0.35)
+	if got:
+		draw_circle(Vector2(0, -14), 11, Color(base.r, base.g, base.b, 0.22))  # 은은한 빛
 	draw_colored_polygon(PackedVector2Array([
-		Vector2(0, -22), Vector2(8, -10), Vector2(0, -2), Vector2(-8, -10)
+		Vector2(0, -24), Vector2(8, -12), Vector2(0, -4), Vector2(-8, -12)
 	]), col)
+	draw_line(Vector2(-8, -12), Vector2(8, -12), col.lightened(0.35), 1.0)
+	if got:
+		draw_circle(Vector2(-2, -17), 1.6, Color(1, 1, 1, 0.85))  # 하이라이트

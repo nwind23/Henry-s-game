@@ -15,14 +15,15 @@ y_sort_enabled = true
 script = ExtResource("1_g")
 ground_color = Color(0.2, 0.46, 0.62, 1)
 accent_color = Color(0.13, 0.32, 0.46, 1)
+water_style = 1
 
 [node name="WorldBounds" parent="." instance=ExtResource("9_bounds")]
 
 [node name="Player" parent="." instance=ExtResource("2_p")]
-position = Vector2(110, 200)
+position = Vector2(56, 260)
 
 [node name="TravelPoint" parent="." instance=ExtResource("3_tp")]
-position = Vector2(40, 200)
+position = Vector2(40, 180)
 
 [node name="Clam1" parent="." instance=ExtResource("4_gn")]
 position = Vector2(260, 150)

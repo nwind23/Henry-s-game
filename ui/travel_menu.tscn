@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0travelmenu0hsg1"]
+[gd_scene load_steps=3 format=3 uid="uid://c0travelmenu0hsg1"]
 
 [ext_resource type="Script" path="res://ui/travel_menu.gd" id="1_tm"]
+[ext_resource type="StyleBoxFlat" path="res://ui/panel_style.tres" id="2_style"]
 
 [node name="TravelMenu" type="CanvasLayer"]
 layer = 10
@@ -10,39 +11,44 @@ script = ExtResource("1_tm")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0, 0, 0, 0.85)
+color = Color(0, 0, 0, 0.7)
 
 [node name="Panel" type="Panel" parent="."]
+theme_override_styles/panel = ExtResource("2_style")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -130.0
-offset_top = -160.0
-offset_right = 130.0
-offset_bottom = 160.0
+offset_left = -140.0
+offset_top = -170.0
+offset_right = 140.0
+offset_bottom = 170.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="Label" parent="Panel"]
 offset_left = 12.0
 offset_top = 12.0
-offset_right = 248.0
+offset_right = 268.0
 offset_bottom = 38.0
 text = "어디로 갈까?"
 horizontal_alignment = 1
 
-[node name="Rows" type="VBoxContainer" parent="Panel"]
+[node name="Scroll" type="ScrollContainer" parent="Panel"]
 offset_left = 20.0
-offset_top = 48.0
-offset_right = 240.0
-offset_bottom = 270.0
+offset_top = 46.0
+offset_right = 260.0
+offset_bottom = 292.0
+horizontal_scroll_mode = 0
+
+[node name="Rows" type="VBoxContainer" parent="Panel/Scroll"]
+size_flags_horizontal = 3
 theme_override_constants/separation = 6
 
 [node name="Close" type="Button" parent="Panel"]
-offset_left = 86.0
-offset_top = 282.0
-offset_right = 174.0
-offset_bottom = 312.0
+offset_left = 96.0
+offset_top = 300.0
+offset_right = 184.0
+offset_bottom = 330.0
 text = "닫기"

@@ -9,15 +9,15 @@ func interact() -> void:
 	var ore := _roll_ore(GameState.mine_depth)
 	var amount: int = max(1, GameState.pickaxe_level)  # 곡괭이 등급만큼
 	GameState.add_item(ore, amount)
-	print("%s %d개 채굴! (보유: %d개)" % [GameState.item_name(ore), amount, GameState.get_count(ore)])
+	GameState.toast("%s %d개 채굴! (보유: %d개)" % [GameState.item_name(ore), amount, GameState.get_count(ore)])
 	# 깊은 곳에서 속성의 돌이 드물게 나온다
 	var d := GameState.mine_depth
 	if d >= 600 and randf() < 0.12:
 		GameState.add_item("ice_stone", 1)
-		print("✨ 얼음의 돌 발견!")
+		GameState.toast("✨ 얼음의 돌 발견!")
 	if d >= 850 and randf() < 0.10:
 		GameState.add_item("dark_stone", 1)
-		print("✨ 어둠의 돌 발견!")
+		GameState.toast("✨ 어둠의 돌 발견!")
 	queue_free()
 
 ## 깊을수록 더 좋은 광물이 나올 수 있다.

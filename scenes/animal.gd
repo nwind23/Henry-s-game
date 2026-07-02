@@ -67,9 +67,9 @@ func interact() -> void:
 			give = secondary_product
 		GameState.add_item(give, 1)
 		queue_redraw()
-		print("%s을(를) 얻었다! (보유: %d개)" % [GameState.item_name(give), GameState.get_count(give)])
+		GameState.toast("%s을(를) 얻었다! (보유: %d개)" % [GameState.item_name(give), GameState.get_count(give)])
 	else:
-		print("%s이(가) 아직 준비되지 않았다..." % GameState.item_name(product))
+		GameState.toast("%s이(가) 아직 준비되지 않았다..." % GameState.item_name(product))
 
 func _draw() -> void:
 	# 생산품 준비 표시(머리 위 노란 점)
