@@ -26,6 +26,17 @@ var GEMS: Array = [
 var gems: Dictionary = {}   # id -> true(보유)
 var has_rainbow: bool = false
 
+# 달성한 엔딩 기록. "mine"(광산) / "rainbow"(무지개) / "true"(진엔딩)
+var endings: Dictionary = {}
+
+func mark_ending(id: String) -> void:
+	if not endings.has(id):
+		endings[id] = true
+		mark_dirty()
+
+func has_ending(id: String) -> bool:
+	return endings.get(id, false)
+
 var money: int = 0
 var inventory: Dictionary = {}
 
@@ -68,6 +79,7 @@ func reset_game() -> void:
 	inventory = {}
 	gems = {}
 	has_rainbow = false
+	endings = {}
 	mine_depth = 1
 	pickaxe_level = 1
 	seen_intro = false
@@ -82,6 +94,7 @@ func _write() -> void:
 		"money": money, "inventory": inventory, "gems": gems,
 		"has_rainbow": has_rainbow, "mine_depth": mine_depth,
 		"pickaxe_level": pickaxe_level, "seen_intro": seen_intro,
+		"endings": endings,
 	}
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f:
@@ -108,6 +121,7 @@ func _load() -> void:
 	mine_depth = int(d.get("mine_depth", 1))
 	pickaxe_level = int(d.get("pickaxe_level", 1))
 	seen_intro = bool(d.get("seen_intro", false))
+	endings = d.get("endings", {})
 
 # 임시 판매가 — DECISIONS.md 참고. 가공·다른 동물 추가 시 여기에 채운다.
 const SELL_PRICES := {

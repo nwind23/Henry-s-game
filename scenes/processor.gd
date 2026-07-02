@@ -50,7 +50,10 @@ func _process(delta: float) -> void:
 		if _timer <= 0.0:
 			_busy = false
 			GameState.add_item(_output, 1)
-			GameState.toast("%s 완성! (보유: %d개)" % [GameState.item_name(_output), GameState.get_count(_output)])
+			if _output == "hyper_gem":
+				GameState.toast("🏆 전설의 하이퍼 시리우스메가 보석 완성!")
+			else:
+				GameState.toast("%s 완성! (보유: %d개)" % [GameState.item_name(_output), GameState.get_count(_output)])
 			_output = ""
 			queue_redraw()
 
