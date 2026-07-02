@@ -63,7 +63,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _rebuild() -> void:
-	progress_label.text = "전설의 보석: %d / %d" % [GameState.gem_count(), GameState.GEMS.size()]
+	var extra := ""
+	if GameState.get_count("hyper_gem") > 0:
+		extra += "  ·  하이퍼 보석 보유!"
+	var done: Array[String] = []
+	if GameState.has_ending("mine"):
+		done.append("광산")
+	if GameState.has_ending("rainbow"):
+		done.append("무지개")
+	if GameState.has_ending("true"):
+		done.append("진엔딩")
+	if not done.is_empty():
+		extra += "  ·  엔딩: " + " ".join(done)
+	progress_label.text = "전설의 보석: %d / %d%s" % [GameState.gem_count(), GameState.GEMS.size(), extra]
 	for c in rows.get_children():
 		c.queue_free()
 	for g in GameState.GEMS:
@@ -83,6 +95,9 @@ func _rebuild() -> void:
 		action_btn.disabled = true
 	elif not GameState.has_rainbow:
 		action_btn.text = "레인보우 보석 만들기"
+		action_btn.disabled = false
+	elif GameState.has_ending("rainbow"):
+		action_btn.text = "무지개 엔딩 다시 보기"
 		action_btn.disabled = false
 	else:
 		action_btn.text = "미래 장치 가동 (무지개 엔딩)"
@@ -112,22 +127,24 @@ func _on_research() -> void:
 	if not GameState.has_gem("foresight") and GameState.money >= FORESIGHT_COST:
 		GameState.add_money(-FORESIGHT_COST)
 		GameState.collect_gem("foresight")
-		print("예지의 보석 연구 완료!")
+		GameState.toast("✨ 예지의 보석 연구 완료!")
 		_rebuild()
 
 func _on_action() -> void:
 	if GameState.has_all_gems() and not GameState.has_rainbow:
 		GameState.make_rainbow()
-		print("레인보우 보석 완성!")
+		GameState.toast("🌈 레인보우 보석 완성!")
 		_rebuild()
 	elif GameState.has_rainbow:
 		ending_text.text = RAINBOW_TEXT
 		true_ending_btn.visible = true
 		ending.visible = true
+		GameState.mark_ending("rainbow")
 
 func _on_true_ending() -> void:
 	ending_text.text = TRUE_TEXT
 	true_ending_btn.visible = false
+	GameState.mark_ending("true")
 
 func _close_ending() -> void:
 	ending.visible = false

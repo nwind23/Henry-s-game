@@ -50,6 +50,7 @@ func descend() -> void:
 
 func _reach_bottom() -> void:
 	GameState.collect_gem("faith")  # 신념의 보석
+	GameState.mark_ending("mine")
 	_update_label()
 	_ending.visible = true
 	get_tree().paused = true
